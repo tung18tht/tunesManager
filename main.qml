@@ -5,9 +5,11 @@ import QtQuick.Dialogs 1.2
 import FilesManager 1.0
 
 ApplicationWindow {
+    property alias fileDialog: fileDialog
+
     visible: true
-    width: 960
-    height: 600
+    width: 300
+    height: 300
     title: qsTr("Tunes Manager")
 
     menuBar: MenuBar {
@@ -15,11 +17,13 @@ ApplicationWindow {
 
     MainForm {
         anchors.fill: parent
-        folderButton.onClicked: fileDialog.open()
+        directoryButton.onClicked: fileDialog.open()
     }
 
     FileDialog {
         id: fileDialog
+        folder: shortcuts.home
+        selectFolder: true
     }
 
     FilesManager {

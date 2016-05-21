@@ -4,13 +4,22 @@ import QtQuick.Layouts 1.2
 
 
 Rectangle {
-    property alias folderButton: folderButton
+    property alias directoryButton: directoryButton
 
     id: root
 
-    Button {
-        id: folderButton
-        anchors.centerIn: parent
-        text: "Choose folder"
+    ColumnLayout {
+        id: columnLayout
+        anchors.fill: parent
+
+        TextField {
+            id: diretoryPath
+            text: fileDialog.folder
+        }
+
+        Button {
+            id: directoryButton
+            text: "Choose folder"
+        }
     }
 }
