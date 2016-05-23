@@ -8,16 +8,16 @@ ApplicationWindow {
     property alias fileDialog: fileDialog
 
     visible: true
-    width: 300
+    width: 600
     height: 300
-    title: qsTr("Tunes Manager")
+    title: "Tunes Manager"
 
     menuBar: MenuBar {
     }
 
     MainForm {
         anchors.fill: parent
-        directoryButton.onClicked: fileDialog.open()
+//        .onClicked: fileDialog.open()
     }
 
     FileDialog {
