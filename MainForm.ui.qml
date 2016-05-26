@@ -4,6 +4,9 @@ import QtQuick.Layouts 1.2
 import QtQuick.Controls.Styles 1.4
 
 Rectangle {
+    property alias scanButtonMouse: scanButtonMouse
+    property alias directoryPathMouse: directoryPathMouse
+
     id: root
     color: "#DDDDDD"
 
@@ -35,15 +38,16 @@ Rectangle {
 
     Text {
         id: diretoryPath
-        anchors.centerIn: parent
+        anchors.horizontalCenter: parent.horizontalCenter
+        y: root.height * .4
         text: fileDialog.folder.toString().substring(7)
         width: parent.width * 0.8
         horizontalAlignment: Text.AlignHCenter
-        wrapMode: Text.Wrap
+        wrapMode: Text.WordWrap
 
         MouseArea {
+            id: directoryPathMouse
             anchors.fill: parent
-            onClicked: fileDialog.open()
             hoverEnabled: true
             onEntered: diretoryPath.font.underline = true
             onExited: diretoryPath.font.underline = false
@@ -66,6 +70,14 @@ Rectangle {
             text: "Scan"
             font.pixelSize: 20
             font.italic: true
+        }
+
+        MouseArea {
+            id: scanButtonMouse
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: scanButton.color = "#EEEEEE"
+            onExited: scanButton.color = "#FFFFFF"
         }
     }
 }

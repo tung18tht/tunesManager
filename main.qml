@@ -5,11 +5,13 @@ import QtQuick.Dialogs 1.2
 import FilesManager 1.0
 
 ApplicationWindow {
-    property alias fileDialog: fileDialog
-
     visible: true
     width: 600
+    maximumWidth: width
+    minimumWidth: width
     height: 300
+    maximumHeight: height
+    minimumHeight: height
     title: "Tunes Manager"
 
     menuBar: MenuBar {
@@ -17,7 +19,10 @@ ApplicationWindow {
 
     MainForm {
         anchors.fill: parent
-//        .onClicked: fileDialog.open()
+
+        directoryPathMouse.onClicked: fileDialog.open()
+
+        scanButtonMouse.onClicked: filesManager.searchTunes(fileDialog.folder);
     }
 
     FileDialog {
