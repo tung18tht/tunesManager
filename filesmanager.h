@@ -3,6 +3,9 @@
 
 #include <QObject>
 #include <QUrl>
+
+#include "scriptsmanager.h"
+
 #include <iostream>
 
 using namespace std;
@@ -14,10 +17,6 @@ public:
     Q_INVOKABLE void searchTunes(QUrl directoryPath);
 
 private:
-
-signals:
-
-public slots:
 };
 
 #endif // FILESMANAGER_H

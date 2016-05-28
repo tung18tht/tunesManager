@@ -5,5 +5,7 @@ FilesManager::FilesManager(QObject *parent) : QObject(parent) {
 }
 
 void FilesManager::searchTunes(QUrl directoryPath) {
-    cout << directoryPath.toString().toStdString() << endl;
+
+//    string searchScript = QUrl(":/scripts/searchTunes.sh").toString().toStdString();
+//    system(searchScript.c_str());
 }

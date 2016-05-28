@@ -3,7 +3,7 @@
         <file>main.qml</file>
         <file>MainForm.ui.qml</file>
     </qresource>
-    <qresource prefix="/script">
+    <qresource prefix="/scripts">
         <file>searchTunes.sh</file>
     </qresource>
 </RCC>
