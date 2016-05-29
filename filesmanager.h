@@ -4,8 +4,6 @@
 #include <QObject>
 #include <QUrl>
 
-#include "scriptsmanager.h"
-
 #include <iostream>
 
 using namespace std;
@@ -17,6 +15,7 @@ public:
     Q_INVOKABLE void searchTunes(QUrl directoryPath);
 
 private:
+    string runSearchTunesScript(string directoryPath);
 };
 
 #endif // FILESMANAGER_H
