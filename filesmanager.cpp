@@ -9,15 +9,8 @@ void FilesManager::searchTunes(QUrl directoryPath) {
 }
 
 string FilesManager::runSearchTunesScript(string directoryPath) {
-    string script = getScriptCommand(":/scripts/searchTunes.sh");
+    string script = "./scripts/searchTunes.sh " + directoryPath;
     return getScriptResult(script.c_str());
-}
-
-string FilesManager::getScriptCommand(QString scriptFilePath) {
-    QFile scriptFile(scriptFilePath);
-    scriptFile.open(QFile::ReadOnly | QFile::Text);
-    QTextStream scriptStream(&scriptFile);
-    return scriptStream.readAll().toStdString();
 }
 
 string FilesManager::getScriptResult(const char* script) {

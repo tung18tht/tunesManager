@@ -1,3 +1,6 @@
+OTHER_FILES +=\
+$${PWD}/scripts/searchTunes.sh
+
 unix:!android {
     isEmpty(target.path) {
         qnx {

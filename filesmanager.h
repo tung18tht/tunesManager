@@ -5,6 +5,7 @@
 #include <QUrl>
 #include <QFile>
 #include <QTextStream>
+#include <QFileInfo>
 
 #include <iostream>
 
@@ -18,7 +19,6 @@ public:
 
 private:
     string runSearchTunesScript(string directoryPath);
-    string getScriptCommand(QString scriptFilePath);
     string getScriptResult(const char* script);
 };
 
