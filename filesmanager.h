@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <QUrl>
+#include <QFile>
+#include <QTextStream>
 
 #include <iostream>
 
@@ -16,6 +18,8 @@ public:
 
 private:
     string runSearchTunesScript(string directoryPath);
+    string getScriptCommand(QString scriptFilePath);
+    string getScriptResult(const char* script);
 };
 
 #endif // FILESMANAGER_H
