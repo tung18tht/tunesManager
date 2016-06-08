@@ -1,4 +1,4 @@
-##Project3: Write a program with the following features##
+##Project 3: Write a program with the following features##
 * List all the audio files from a folder (including sub-folders)
 * Sort files by file name, file size, created date
 * Detect and highlight all the audio file that have the same name (possible
