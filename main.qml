@@ -19,19 +19,22 @@ ApplicationWindow {
     }
 
     HomeWindowForm {
+        id: homeWindow
         anchors.fill: parent
 
         directoryPathMouse.onClicked: fileDialog.open()
 
         scanButtonMouse.onClicked: {
             filesManager.searchTunes(fileDialog.folder.toString().substring(7));
-            root.visible = false
-            loader.setSource("TunesWindow.qml")
+            homeWindow.visible = false
+            tunesWindow.visible = true
         }
     }
 
-    Loader {
-        id: loader
+    TunesWindowForm {
+        id: tunesWindow
+        visible: false
+        anchors.fill: parent
     }
 
     FileDialog {

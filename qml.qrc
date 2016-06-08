@@ -1,8 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>HomeWindow.qml</file>
+        <file>main.qml</file>
         <file>HomeWindowForm.ui.qml</file>
-        <file>TunesWindow.qml</file>
         <file>TunesWindowForm.ui.qml</file>
     </qresource>
 </RCC>

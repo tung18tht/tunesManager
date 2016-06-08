@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
     qmlRegisterType<FilesManager>("FilesManager", 1, 0, "FilesManager");
 
     QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/HomeWindow.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();
 }
