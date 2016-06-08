@@ -17,7 +17,7 @@ ApplicationWindow {
     menuBar: MenuBar {
     }
 
-    MainForm {
+    HomeWindowForm {
         anchors.fill: parent
 
         directoryPathMouse.onClicked: fileDialog.open()
