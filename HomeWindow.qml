@@ -22,7 +22,14 @@ ApplicationWindow {
 
         directoryPathMouse.onClicked: fileDialog.open()
 
-        scanButtonMouse.onClicked: filesManager.searchTunes(fileDialog.folder.toString().substring(7));
+        scanButtonMouse.onClicked: {
+//            filesManager.searchTunes(fileDialog.folder.toString().substring(7));
+            loader.setSource("TunesWindow.qml")
+        }
+    }
+
+    Loader {
+        id: loader
     }
 
     FileDialog {
