@@ -1,5 +1,7 @@
 OTHER_FILES +=\
 $${PWD}/scripts/searchTunes.sh
+OTHER_FILES +=\
+$${PWD}/README.md
 
 unix:!android {
     isEmpty(target.path) {
