@@ -3,13 +3,17 @@ import QtQuick.Controls 1.4
 
 ApplicationWindow {
     visible: true
-    width: 1000
-    height: 1000
+    width: 500
+    height: 500
 
     menuBar: MenuBar {
     }
 
     TunesWindowForm {
         anchors.fill: parent
+    }
+
+    Loader {
+        id: loader
     }
 }

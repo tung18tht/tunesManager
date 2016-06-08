@@ -5,6 +5,7 @@ import QtQuick.Dialogs 1.2
 import FilesManager 1.0
 
 ApplicationWindow {
+    id: root
     visible: true
     width: 600
     maximumWidth: width
@@ -23,7 +24,8 @@ ApplicationWindow {
         directoryPathMouse.onClicked: fileDialog.open()
 
         scanButtonMouse.onClicked: {
-//            filesManager.searchTunes(fileDialog.folder.toString().substring(7));
+            filesManager.searchTunes(fileDialog.folder.toString().substring(7));
+            root.visible = false
             loader.setSource("TunesWindow.qml")
         }
     }
