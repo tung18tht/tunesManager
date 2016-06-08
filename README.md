@@ -1,29 +1,8 @@
-# README #
-
-This README would normally document whatever steps are necessary to get your application up and running.
-
-### What is this repository for? ###
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+##Project3: Write a program with the following features##
+* List all the audio files from a folder (including sub-folders)
+* Sort files by file name, file size, created date
+* Detect and highlight all the audio file that have the same name (possible
+redundancy)
+* Play an audio by clicking on the audio path
+* Search audio files by keyword
+The Graphical User Interface is written in C/C++ All commands are written in Shell Script
