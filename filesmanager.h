@@ -3,9 +3,6 @@
 
 #include <QObject>
 #include <QUrl>
-#include <QFile>
-#include <QTextStream>
-#include <QFileInfo>
 
 #include <iostream>
 

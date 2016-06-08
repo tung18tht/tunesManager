@@ -22,7 +22,7 @@ ApplicationWindow {
 
         directoryPathMouse.onClicked: fileDialog.open()
 
-        scanButtonMouse.onClicked: filesManager.searchTunes(fileDialog.folder);
+        scanButtonMouse.onClicked: filesManager.searchTunes(fileDialog.folder.toString().substring(7));
     }
 
     FileDialog {

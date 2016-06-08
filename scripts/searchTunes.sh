@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo 'Hello' $*
+find $1 -iname "*.mp3"
