@@ -12,7 +12,7 @@ class FilesManager : public QObject {
     Q_OBJECT
 public:
     explicit FilesManager(QObject *parent = 0);
-    Q_INVOKABLE void searchTunes(QUrl directoryPath);
+    Q_INVOKABLE QString searchTunes(QUrl directoryPath);
 
 private:
     string runSearchTunesScript(string directoryPath);

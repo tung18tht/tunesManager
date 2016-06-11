@@ -4,8 +4,9 @@ FilesManager::FilesManager(QObject *parent) : QObject(parent) {
 
 }
 
-void FilesManager::searchTunes(QUrl directoryPath) {
-    cout << runSearchTunesScript(directoryPath.toString().toStdString()) << endl;
+QString FilesManager::searchTunes(QUrl directoryPath) {
+    QString qString(runSearchTunesScript(directoryPath.toString().toStdString()).c_str());
+    return qString;
 }
 
 string FilesManager::runSearchTunesScript(string directoryPath) {

@@ -25,9 +25,9 @@ ApplicationWindow {
         directoryPathMouse.onClicked: fileDialog.open()
 
         scanButtonMouse.onClicked: {
-            filesManager.searchTunes(fileDialog.folder.toString().substring(7));
             homeWindow.visible = false
             tunesWindow.visible = true
+            tunesWindow.testText.text = filesManager.searchTunes(fileDialog.folder.toString().substring(7));
         }
     }
 
@@ -35,6 +35,14 @@ ApplicationWindow {
         id: tunesWindow
         visible: false
         anchors.fill: parent
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                tunesWindow.visible = false
+                homeWindow.visible = true
+            }
+        }
     }
 
     FileDialog {
