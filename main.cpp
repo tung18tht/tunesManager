@@ -2,7 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QtQml>
 
-#include"filesmanager.h"
+#include "filesmanager.h"
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);

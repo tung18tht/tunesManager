@@ -4,13 +4,13 @@ FilesManager::FilesManager(QObject *parent) : QObject(parent) {
 
 }
 
-QString FilesManager::searchTunes(QUrl directoryPath) {
-    QString qString(runSearchTunesScript(directoryPath.toString().toStdString()).c_str());
-    return qString;
+QList<QObject*> FilesManager::searchTunes(QUrl directoryPath) {
+//    runSearchTunesScript(directoryPath.toString().toStdString());
+    return null;
 }
 
 string FilesManager::runSearchTunesScript(string directoryPath) {
-    string script = "./scripts/searchTunes.sh " + directoryPath;
+    string script = "./scripts/searchTunes.sh " + directoryPath + " mp3";
     return getScriptResult(script.c_str());
 }
 

@@ -28,6 +28,8 @@ ApplicationWindow {
 
             homeWindow.visible = false
             tunesWindow.visible = true
+
+            tunesWindow.musicTable.model = filesManager.searchTunes(fileDialog.folder.toString().substring(7))
         }
     }
 
