@@ -1,3 +1,6 @@
 #!/bin/bash
 
-find $1 -iname "*.mp3"
+for type in $2..$*
+do
+    find $1 -iname "*.$type" -exec stat -f "%N %Sm %z" {} +
+done

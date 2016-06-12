@@ -8,11 +8,9 @@ ApplicationWindow {
     id: root
     visible: true
     width: 600
-    maximumWidth: width
-    minimumWidth: width
+    minimumWidth: 600
     height: 300
-    maximumHeight: height
-    minimumHeight: height
+    minimumHeight: 300
     title: "Tunes Manager"
 
     menuBar: MenuBar {
@@ -25,24 +23,18 @@ ApplicationWindow {
         directoryPathMouse.onClicked: fileDialog.open()
 
         scanButtonMouse.onClicked: {
+            root.width = 800
+            root.height = 500
+
             homeWindow.visible = false
             tunesWindow.visible = true
-            tunesWindow.testText.text = filesManager.searchTunes(fileDialog.folder.toString().substring(7));
         }
     }
 
     TunesWindowForm {
         id: tunesWindow
-        visible: false
         anchors.fill: parent
-
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                tunesWindow.visible = false
-                homeWindow.visible = true
-            }
-        }
+        visible: false
     }
 
     FileDialog {
