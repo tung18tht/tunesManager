@@ -5,8 +5,27 @@ FilesManager::FilesManager(QObject *parent) : QObject(parent) {
 }
 
 QList<QObject*> FilesManager::searchTunes(QUrl directoryPath) {
-//    runSearchTunesScript(directoryPath.toString().toStdString());
-    return null;
+    string result = runSearchTunesScript(directoryPath.toString().toStdString());
+
+    QList<QObject*> tuneList;
+    istringstream resultStream(result);
+    QString name, lastModified;
+    string temp;
+    int size;
+
+    while (!resultStream.eof()) {
+        getline(resultStream, temp);
+        name = temp.c_str();
+        getline(resultStream, temp);
+        size = atoi(temp.c_str());
+        getline(resultStream, temp);
+        lastModified = temp.c_str();
+        tuneList.append(new Tune(name, size, lastModified));
+    }
+
+    tuneList.removeLast();
+
+    return tuneList;
 }
 
 string FilesManager::runSearchTunesScript(string directoryPath) {

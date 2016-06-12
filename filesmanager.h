@@ -5,6 +5,7 @@
 #include <QUrl>
 
 #include <iostream>
+#include <sstream>
 
 #include "tune.h"
 

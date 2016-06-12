@@ -23,13 +23,13 @@ ApplicationWindow {
         directoryPathMouse.onClicked: fileDialog.open()
 
         scanButtonMouse.onClicked: {
+            tunesWindow.tuneTable.model = filesManager.searchTunes(fileDialog.folder.toString().substring(7))
+
             root.width = 800
             root.height = 500
 
             homeWindow.visible = false
             tunesWindow.visible = true
-
-            tunesWindow.musicTable.model = filesManager.searchTunes(fileDialog.folder.toString().substring(7))
         }
     }
 

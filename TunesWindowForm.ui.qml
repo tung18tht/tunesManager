@@ -3,12 +3,12 @@ import QtQuick.Controls 1.4
 import QtMultimedia 5.5
 
 Rectangle {
-    property alias musicTable: musicTable
+    property alias tuneTable: tuneTable
 
     id: root
 
     TableView {
-        id: musicTable
+        id: tuneTable
         anchors.fill: parent
 
         TableViewColumn {
