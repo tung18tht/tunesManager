@@ -20,6 +20,7 @@ public:
 private:
     string runSearchTunesScript(string directoryPath);
     string getScriptResult(const char* script);
+    QList<QObject*> getTuneList(string tuneString);
 };
 
 #endif // FILESMANAGER_H

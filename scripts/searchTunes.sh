@@ -3,6 +3,11 @@
 # $1: directory path
 # $2..$*: file type
 
+# output:
+ # File path
+ # File size
+ # Last modified
+
 if [[ uname=="Darwin" ]]; then # OS X
     for type in $2..$*
     do
