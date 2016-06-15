@@ -6,26 +6,29 @@
 class Tune : public QObject {
     Q_OBJECT
 
-    Q_PROPERTY(QString name READ name WRITE setName)
+    Q_PROPERTY(QString name READ name)
+    Q_PROPERTY(QString path READ path WRITE setPath)
     Q_PROPERTY(int size READ size WRITE setSize)
     Q_PROPERTY(QString lastModified READ lastModified WRITE setLastModified)
 
 public:
     explicit Tune(QObject *parent = 0);
-    Tune();
-    Tune(QString name, int size, QString lastModified);
+    Tune(QString path, int size, QString lastModified);
 
     QString name();
+    QString path();
     int size();
     QString lastModified();
 
-    void setName(QString name);
+    void setPath(QString path);
     void setSize(int size);
     void setLastModified(QString lastModified);
 
 private:
-    QString qName, qLastModified;
+    QString qName, qPath, qLastModified;
     int qSize;
+
+    void setNameFromPath();
 };
 
 #endif // TUNE_H

@@ -10,20 +10,30 @@ Rectangle {
     TableView {
         id: tuneTable
         anchors.fill: parent
+        alternatingRowColors: false
+        sortIndicatorVisible: true
 
         TableViewColumn {
             role: "name"
             title: "Name"
+            movable: false
         }
 
         TableViewColumn {
             role: "size"
             title: "Size"
+            movable: false
         }
 
         TableViewColumn {
             role: "lastModified"
             title: "Last Modified"
+            movable: false
+        }
+
+        TableViewColumn {
+            role: "path"
+            visible: false
         }
     }
 }

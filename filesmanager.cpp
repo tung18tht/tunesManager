@@ -10,7 +10,7 @@ QList<QObject*> FilesManager::searchTunes(QUrl directoryPath) {
 }
 
 string FilesManager::runSearchTunesScript(string directoryPath) {
-    string script = "./scripts/searchTunes.sh " + directoryPath + " mp3";
+    string script = "./scripts/searchTunes.sh \"" + directoryPath + "\" mp3";
     return getScriptResult(script.c_str());
 }
 
@@ -29,18 +29,18 @@ string FilesManager::getScriptResult(const char* script) {
 QList<QObject*> FilesManager::getTuneList(string tuneString) {
     QList<QObject*> tuneList;
     istringstream tuneStream(tuneString);
-    QString name, lastModified;
+    QString path, lastModified;
     string temp;
     int size;
 
     while (!tuneStream.eof()) {
         getline(tuneStream, temp);
-        name = temp.c_str();
+        path = temp.c_str();
         getline(tuneStream, temp);
         size = atoi(temp.c_str());
         getline(tuneStream, temp);
         lastModified = temp.c_str();
-        tuneList.append(new Tune(name, size, lastModified));
+        tuneList.append(new Tune(path, size, lastModified));
     }
 
     tuneList.removeLast();
