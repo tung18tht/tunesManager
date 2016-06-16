@@ -45,7 +45,7 @@ Rectangle {
     TableView {
         id: tuneTable
         anchors.top: tunePlayerBox.bottom
-        width: parent.width
+        width: parent.width * 0.75
         height: parent.height * 0.9
         alternatingRowColors: false
         sortIndicatorVisible: true
@@ -72,5 +72,13 @@ Rectangle {
             role: "path"
             visible: false
         }
+    }
+
+    Rectangle {
+        id: tuneInfo
+        anchors.top: tunePlayerBox.bottom
+        anchors.left: tuneTable.right
+        width: parent.width * 0.25
+        height: parent.height * 0.9
     }
 }
