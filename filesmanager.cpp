@@ -29,13 +29,13 @@ string FilesManager::getScriptResult(const char* script) {
 QList<QObject*> FilesManager::getTuneList(string tuneString) {
     QList<QObject*> tuneList;
     istringstream tuneStream(tuneString);
-    QString path, lastModified;
+    QString path = "file://", lastModified;
     string temp;
     int size;
 
     while (!tuneStream.eof()) {
         getline(tuneStream, temp);
-        path = temp.c_str();
+        path += temp.c_str();
         getline(tuneStream, temp);
         size = atoi(temp.c_str());
         getline(tuneStream, temp);

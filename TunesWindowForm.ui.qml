@@ -5,19 +5,46 @@ import QtMultimedia 5.5
 
 Rectangle {
     property alias tuneTable: tuneTable
+    property alias backToHomeButtonMouse: backToHomeButtonMouse
 
     id: root
 
     Rectangle {
-        id: tunePlayer
-        width: parent.width
+        id: backToHomeButton
         height: parent.height * 0.1
-        color: "#FF0000"
+        width: height;
+        color: "#DDDDDD"
+
+        Text {
+            anchors.centerIn: parent
+            text: "Back"
+        }
+
+        MouseArea {
+            id: backToHomeButtonMouse
+            anchors.fill: parent
+        }
+    }
+
+    Rectangle {
+        id: tunePlayerBox
+        height: parent.height * 0.1
+        width: parent.width - height
+        anchors.left: backToHomeButton.right
+
+        MediaPlayer {
+            id: tunePlayer
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: tunePlayer.play()
+        }
     }
 
     TableView {
         id: tuneTable
-        anchors.top: tunePlayer.bottom
+        anchors.top: tunePlayerBox.bottom
         width: parent.width
         height: parent.height * 0.9
         alternatingRowColors: false

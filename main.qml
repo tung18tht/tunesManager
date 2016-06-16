@@ -37,11 +37,20 @@ ApplicationWindow {
         id: tunesWindow
         anchors.fill: parent
         visible: false
+
+        backToHomeButtonMouse.onClicked: {
+            root.width = 600
+            root.height = 300
+
+            tunesWindow.visible = false
+            homeWindow.visible = true
+        }
     }
 
     FileDialog {
         id: fileDialog
-        folder: shortcuts.home
+//        folder: shortcuts.home
+        folder: "file:///Volumes/BOOTCAMP/Users/Macbook Pro/Music"
         selectFolder: true
     }
 
