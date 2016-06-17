@@ -1,5 +1,7 @@
 OTHER_FILES +=\
-$${PWD}/scripts/searchTunes.sh
+$${PWD}/scripts/search.sh
+OTHER_FILES +=\
+$${PWD}/scripts/sort.sh
 OTHER_FILES +=\
 $${PWD}/README.md
 

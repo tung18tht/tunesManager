@@ -14,7 +14,7 @@ QList<QObject*> TunesManager::sortTuneList(QString role, bool inverse) {
 }
 
 string TunesManager::runSearchTunesScript(string directoryPath) {
-    string script = "./scripts/searchTunes.sh \"" + directoryPath + "\" mp3";
+    string script = "./scripts/search.sh \"" + directoryPath + "\" mp3";
     return getScriptResult(script.c_str());
 }
 
