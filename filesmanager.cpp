@@ -54,8 +54,8 @@ QString FilesManager::evaluateSize(string size) {
     int sizeInt = atoi(size.c_str());
     sizeInt /= 1000;
     size = to_string(sizeInt);
-    if(size.length() > 3) {
-        size.insert(size.length()-3, ",");
+    for(int i=3; i<size.length(); i+=3) {
+        size.insert(size.length()-i, ",");
     }
     size += " KB";
     return size.c_str();
