@@ -4,7 +4,7 @@ Tune::Tune(QObject *parent) : QObject(parent) {
 
 }
 
-Tune::Tune(QString path, int size, QString lastModified) {
+Tune::Tune(QString path, QString size, QString lastModified) {
     qPath = path;
     qSize = size;
     qLastModified = lastModified;
@@ -19,7 +19,7 @@ QString Tune::path() {
     return qPath;
 }
 
-int Tune::size() {
+QString Tune::size() {
     return qSize;
 }
 
@@ -32,7 +32,7 @@ void Tune::setPath(QString path) {
     setNameFromPath();
 }
 
-void Tune::setSize(int size) {
+void Tune::setSize(QString size) {
     qSize = size;
 }
 

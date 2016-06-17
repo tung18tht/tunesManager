@@ -8,25 +8,24 @@ class Tune : public QObject {
 
     Q_PROPERTY(QString name READ name)
     Q_PROPERTY(QString path READ path WRITE setPath)
-    Q_PROPERTY(int size READ size WRITE setSize)
+    Q_PROPERTY(QString size READ size WRITE setSize)
     Q_PROPERTY(QString lastModified READ lastModified WRITE setLastModified)
 
 public:
     explicit Tune(QObject *parent = 0);
-    Tune(QString path, int size, QString lastModified);
+    Tune(QString path, QString size, QString lastModified);
 
     QString name();
     QString path();
-    int size();
+    QString size();
     QString lastModified();
 
     void setPath(QString path);
-    void setSize(int size);
+    void setSize(QString size);
     void setLastModified(QString lastModified);
 
 private:
-    QString qName, qPath, qLastModified;
-    int qSize;
+    QString qName, qPath, qLastModified, qSize;
 
     void setNameFromPath();
 };

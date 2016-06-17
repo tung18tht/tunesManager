@@ -29,16 +29,17 @@ string FilesManager::getScriptResult(const char* script) {
 QList<QObject*> FilesManager::getTuneList(string tuneString) {
     QList<QObject*> tuneList;
     istringstream tuneStream(tuneString);
-    QString path, lastModified;
+    QString path, size, lastModified;
     string temp;
-    int size;
 
     while (!tuneStream.eof()) {
         getline(tuneStream, temp);
         path = "file://";
         path += temp.c_str();
+
         getline(tuneStream, temp);
-        size = atoi(temp.c_str());
+        size = evaluateSize(temp);
+
         getline(tuneStream, temp);
         lastModified = temp.c_str();
         tuneList.append(new Tune(path, size, lastModified));
@@ -47,4 +48,15 @@ QList<QObject*> FilesManager::getTuneList(string tuneString) {
     tuneList.removeLast();
 
     return tuneList;
+}
+
+QString FilesManager::evaluateSize(string size) {
+    int sizeInt = atoi(size.c_str());
+    sizeInt /= 1000;
+    size = to_string(sizeInt);
+    if(size.length() > 3) {
+        size.insert(size.length()-3, ",");
+    }
+    size += " KB";
+    return size.c_str();
 }

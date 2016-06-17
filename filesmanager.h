@@ -21,6 +21,7 @@ private:
     string runSearchTunesScript(string directoryPath);
     string getScriptResult(const char* script);
     QList<QObject*> getTuneList(string tuneString);
+    QString evaluateSize(string size);
 };
 
 #endif // FILESMANAGER_H
