@@ -26,7 +26,7 @@ ApplicationWindow {
 
         scanButtonMouse.onClicked: {
             tuneModel.clear()
-            tuneModel.insert(0, tunesManager.searchTunes(directoryPath))
+            tuneModel.append(tunesManager.searchTunes(directoryPath))
 
             root.width = 800
             root.height = 500
@@ -37,6 +37,9 @@ ApplicationWindow {
     }
 
     TunesWindowForm {
+        property string sortColumnRole: tuneTable.getColumn(tuneTable.sortIndicatorColumn).role
+        property int sortOrder: (tuneTable.sortIndicatorOrder == Qt.AscendingOrder) ? 0 : 1
+
         id: tunesWindow
         anchors.fill: parent
         visible: false
@@ -53,12 +56,12 @@ ApplicationWindow {
 
         tuneTable.onSortIndicatorColumnChanged: {
             tuneModel.clear()
-            tuneModel.insert(0, tunesManager.sortTuneList("name", 1))
+            tuneModel.append(tunesManager.sortTuneList(sortColumnRole, sortOrder))
         }
 
         tuneTable.onSortIndicatorOrderChanged: {
             tuneModel.clear()
-            tuneModel.insert(0, tunesManager.sortTuneList("name", 1))
+            tuneModel.append(tunesManager.sortTuneList(sortColumnRole, sortOrder))
         }
 
         tuneTable.onClicked: {
