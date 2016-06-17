@@ -2,12 +2,12 @@
 #include <QQmlApplicationEngine>
 #include <QtQml>
 
-#include "filesmanager.h"
+#include "tunesmanager.h"
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
-    qmlRegisterType<FilesManager>("FilesManager", 1, 0, "FilesManager");
+    qmlRegisterType<TunesManager>("TunesManager", 1, 0, "TunesManager");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

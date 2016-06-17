@@ -5,8 +5,8 @@ QT += qml quick widgets
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    filesmanager.cpp \
-    tune.cpp
+    tune.cpp \
+    tunesmanager.cpp
 
 RESOURCES += qml.qrc
 
@@ -17,5 +17,5 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    filesmanager.h \
-    tune.h
+    tune.h \
+    tunesmanager.h

@@ -2,7 +2,7 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
 
-import FilesManager 1.0
+import TunesManager 1.0
 
 ApplicationWindow {
     property string directoryPath: fileDialog.folder.toString().substring(7)
@@ -26,7 +26,7 @@ ApplicationWindow {
 
         scanButtonMouse.onClicked: {
             tuneModel.clear()
-            tuneModel.insert(0, filesManager.searchTunes(directoryPath))
+            tuneModel.insert(0, tunesManager.searchTunes(directoryPath))
 
             root.width = 800
             root.height = 500
@@ -53,12 +53,12 @@ ApplicationWindow {
 
         tuneTable.onSortIndicatorColumnChanged: {
             tuneModel.clear()
-            tuneModel.insert(0, filesManager.sortTuneList("name", 1))
+            tuneModel.insert(0, tunesManager.sortTuneList("name", 1))
         }
 
         tuneTable.onSortIndicatorOrderChanged: {
             tuneModel.clear()
-            tuneModel.insert(0, filesManager.sortTuneList("name", 1))
+            tuneModel.insert(0, tunesManager.sortTuneList("name", 1))
         }
 
         tuneTable.onClicked: {
@@ -80,8 +80,8 @@ ApplicationWindow {
         selectFolder: true
     }
 
-    FilesManager {
-        id: filesManager
+    TunesManager {
+        id: tunesManager
     }
 }
 

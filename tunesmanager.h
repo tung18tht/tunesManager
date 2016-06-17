@@ -1,5 +1,5 @@
-#ifndef FILESMANAGER_H
-#define FILESMANAGER_H
+#ifndef TUNESMANAGER_H
+#define TUNESMANAGER_H
 
 #include <QObject>
 #include <QUrl>
@@ -11,10 +11,10 @@
 
 using namespace std;
 
-class FilesManager : public QObject {
+class TunesManager : public QObject {
     Q_OBJECT
 public:
-    explicit FilesManager(QObject *parent = 0);
+    explicit TunesManager(QObject *parent = 0);
     Q_INVOKABLE QList<QObject*> searchTunes(QString directoryPath);
     Q_INVOKABLE QList<QObject*> sortTuneList(QString role, bool inverse);
 
@@ -27,4 +27,4 @@ private:
     QString evaluateSize(string size);
 };
 
-#endif // FILESMANAGER_H
+#endif // TUNESMANAGER_H

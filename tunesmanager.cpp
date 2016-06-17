@@ -1,24 +1,24 @@
-#include "filesmanager.h"
+#include "tunesmanager.h"
 
-FilesManager::FilesManager(QObject *parent) : QObject(parent) {
+TunesManager::TunesManager(QObject *parent) : QObject(parent) {
 
 }
 
-QList<QObject*> FilesManager::searchTunes(QString directoryPath) {
+QList<QObject*> TunesManager::searchTunes(QString directoryPath) {
     string result = runSearchTunesScript(directoryPath.toStdString());
     return tuneList = getTuneList(result);
 }
 
-QList<QObject*> FilesManager::sortTuneList(QString role, bool inverse) {
+QList<QObject*> TunesManager::sortTuneList(QString role, bool inverse) {
     return tuneList;
 }
 
-string FilesManager::runSearchTunesScript(string directoryPath) {
+string TunesManager::runSearchTunesScript(string directoryPath) {
     string script = "./scripts/searchTunes.sh \"" + directoryPath + "\" mp3";
     return getScriptResult(script.c_str());
 }
 
-string FilesManager::getScriptResult(const char* script) {
+string TunesManager::getScriptResult(const char* script) {
     char buffer[128];
     string result = "";
     shared_ptr<FILE> pipe(popen(script, "r"), pclose);
@@ -30,7 +30,7 @@ string FilesManager::getScriptResult(const char* script) {
     return result;
 }
 
-QList<QObject*> FilesManager::getTuneList(string tuneString) {
+QList<QObject*> TunesManager::getTuneList(string tuneString) {
     QList<QObject*> tuneList;
     istringstream tuneStream(tuneString);
     QString path, size, lastModified;
@@ -54,7 +54,7 @@ QList<QObject*> FilesManager::getTuneList(string tuneString) {
     return tuneList;
 }
 
-QString FilesManager::evaluateSize(string size) {
+QString TunesManager::evaluateSize(string size) {
     int sizeInt = atoi(size.c_str());
     sizeInt /= 1000;
     size = to_string(sizeInt);
