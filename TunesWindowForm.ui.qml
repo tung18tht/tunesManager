@@ -5,6 +5,7 @@ import QtMultimedia 5.5
 
 Rectangle {
     property alias tuneTable: tuneTable
+    property alias tunePlayer: tunePlayer
     property alias backToHomeButtonMouse: backToHomeButtonMouse
 
     id: root
@@ -35,11 +36,6 @@ Rectangle {
         MediaPlayer {
             id: tunePlayer
         }
-
-        MouseArea {
-            anchors.fill: parent
-            onClicked: tunePlayer.play()
-        }
     }
 
     TableView {
@@ -49,6 +45,7 @@ Rectangle {
         height: parent.height * 0.9
         alternatingRowColors: false
         sortIndicatorVisible: true
+        model: tuneModel
 
         TableViewColumn {
             role: "name"

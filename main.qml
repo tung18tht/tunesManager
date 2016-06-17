@@ -23,7 +23,8 @@ ApplicationWindow {
         directoryPathMouse.onClicked: fileDialog.open()
 
         scanButtonMouse.onClicked: {
-            tunesWindow.tuneTable.model = filesManager.searchTunes(fileDialog.folder.toString().substring(7))
+            tuneModel.clear()
+            tuneModel.insert(0, filesManager.searchTunes(fileDialog.folder.toString().substring(7)))
 
             root.width = 800
             root.height = 500
@@ -39,18 +40,31 @@ ApplicationWindow {
         visible: false
 
         backToHomeButtonMouse.onClicked: {
+            tunePlayer.stop()
+
             root.width = 600
             root.height = 300
 
             tunesWindow.visible = false
             homeWindow.visible = true
         }
+
+        tuneTable.onClicked: {
+        }
+
+        tuneTable.onDoubleClicked: {
+            tunePlayer.source = tuneModel.get(row).path
+            tunePlayer.play()
+        }
+    }
+
+    ListModel {
+        id: tuneModel
     }
 
     FileDialog {
         id: fileDialog
-//        folder: shortcuts.home
-        folder: "file:///Volumes/BOOTCAMP/Users/Macbook Pro/Music"
+        folder: shortcuts.home
         selectFolder: true
     }
 
