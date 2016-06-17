@@ -15,7 +15,7 @@ class FilesManager : public QObject {
     Q_OBJECT
 public:
     explicit FilesManager(QObject *parent = 0);
-    Q_INVOKABLE QList<QObject*> searchTunes(QUrl directoryPath);
+    Q_INVOKABLE QList<QObject*> searchTunes(QString directoryPath);
 
 private:
     string runSearchTunesScript(string directoryPath);

@@ -4,8 +4,8 @@ FilesManager::FilesManager(QObject *parent) : QObject(parent) {
 
 }
 
-QList<QObject*> FilesManager::searchTunes(QUrl directoryPath) {
-    string result = runSearchTunesScript(directoryPath.toString().toStdString());
+QList<QObject*> FilesManager::searchTunes(QString directoryPath) {
+    string result = runSearchTunesScript(directoryPath.toStdString());
     return getTuneList(result);
 }
 
