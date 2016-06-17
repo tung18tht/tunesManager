@@ -6,7 +6,11 @@ FilesManager::FilesManager(QObject *parent) : QObject(parent) {
 
 QList<QObject*> FilesManager::searchTunes(QString directoryPath) {
     string result = runSearchTunesScript(directoryPath.toStdString());
-    return getTuneList(result);
+    return tuneList = getTuneList(result);
+}
+
+QList<QObject*> FilesManager::sortTuneList(QString role, bool inverse) {
+    return tuneList;
 }
 
 string FilesManager::runSearchTunesScript(string directoryPath) {

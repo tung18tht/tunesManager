@@ -16,8 +16,11 @@ class FilesManager : public QObject {
 public:
     explicit FilesManager(QObject *parent = 0);
     Q_INVOKABLE QList<QObject*> searchTunes(QString directoryPath);
+    Q_INVOKABLE QList<QObject*> sortTuneList(QString role, bool inverse);
 
 private:
+    QList<QObject*> tuneList;
+
     string runSearchTunesScript(string directoryPath);
     string getScriptResult(const char* script);
     QList<QObject*> getTuneList(string tuneString);

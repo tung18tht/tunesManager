@@ -51,6 +51,16 @@ ApplicationWindow {
             homeWindow.visible = true
         }
 
+        tuneTable.onSortIndicatorColumnChanged: {
+            tuneModel.clear()
+            tuneModel.insert(0, filesManager.sortTuneList("name", 1))
+        }
+
+        tuneTable.onSortIndicatorOrderChanged: {
+            tuneModel.clear()
+            tuneModel.insert(0, filesManager.sortTuneList("name", 1))
+        }
+
         tuneTable.onClicked: {
         }
 
