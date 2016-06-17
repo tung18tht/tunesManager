@@ -51,12 +51,15 @@ Rectangle {
             role: "name"
             title: "Name"
             movable: false
+            width: 250
         }
 
         TableViewColumn {
             role: "size"
             title: "Size"
             movable: false
+            horizontalAlignment: Text.AlignRight
+            width: 80
         }
 
         TableViewColumn {

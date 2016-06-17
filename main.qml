@@ -5,6 +5,8 @@ import QtQuick.Dialogs 1.2
 import FilesManager 1.0
 
 ApplicationWindow {
+    property string directoryPath: fileDialog.folder.toString().substring(7)
+
     id: root
     visible: true
     width: 600
@@ -24,7 +26,7 @@ ApplicationWindow {
 
         scanButtonMouse.onClicked: {
             tuneModel.clear()
-            tuneModel.insert(0, filesManager.searchTunes(fileDialog.folder.toString().substring(7)))
+            tuneModel.insert(0, filesManager.searchTunes(directoryPath))
 
             root.width = 800
             root.height = 500

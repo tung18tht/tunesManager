@@ -40,7 +40,7 @@ Rectangle {
         id: diretoryPath
         anchors.horizontalCenter: parent.horizontalCenter
         y: root.height * .4
-        text: fileDialog.folder.toString().substring(7)
+        text: directoryPath
         width: parent.width * 0.8
         horizontalAlignment: Text.AlignHCenter
         wrapMode: Text.WordWrap
