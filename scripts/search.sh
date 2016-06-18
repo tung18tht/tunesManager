@@ -12,14 +12,14 @@ case "$(uname -s)" in
     Darwin)     # macOS
         for type in $2..$*
         do
-           find "$1" -iname "*.$type" -exec stat -f "%N%n%z%n%Sm" {} +
+           find "$1" \( ! -regex '.*/\..*' \) -iname "*.$type" -exec stat -f "%N%n%z%n%Sm" {} +
         done
     ;;
 
     Linux)      # Ubuntu
         for type in $2..$*
         do
-            find "$1" -iname "*.$type" -printf "%p\n%s\n%t\n"
+            find "$1" \( ! -regex '.*/\..*' \) -iname "*.$type" -printf "%p\n%s\n%t\n"
         done
     ;;
 esac
