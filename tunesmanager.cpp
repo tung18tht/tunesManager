@@ -49,32 +49,42 @@ QString TunesManager::evaluateSize(string size) {
     return size.c_str();
 }
 
+QList<QObject*> TunesManager::checkDuplicate() {
+    string duplicateNameList = runCheckDuplicateScript();
+    setDuplicate(duplicateNameList);
+    return tuneList;
+}
+
+string TunesManager::runCheckDuplicateScript() {
+    string nameString = getRoleString(0);
+    string script = "./scripts/checkDuplicate.sh ";
+    script += "\"" + nameString + "\"";
+    return getScriptResult(script.c_str());
+}
+
+void TunesManager::setDuplicate(string duplicateNameList) {
+    string duplicateName;
+    istringstream duplicateNameStream(duplicateNameList);
+    QList<QObject*>::iterator object;
+
+    while (!duplicateNameStream.eof()) {
+        getline(duplicateNameStream, duplicateName);
+        for (object=tuneList.begin(); object!=tuneList.end(); object++) {
+            Tune* tune = (Tune*) *object;
+
+            if (tune->lastModified().toStdString() == roleString) {
+                sortedTuneList.append(tune);
+                tuneList.removeOne(*object);
+                found = true;
+            }
+        }
+    }
+}
+
 QList<QObject*> TunesManager::sortTuneList(int role, bool inverse) {
     string roleString = getRoleString(role);
     string sortedRoleString = runSortScript(roleString, inverse);
     return tuneList = getSortedTuneList(role, sortedRoleString);
-}
-
-string TunesManager::getRoleString(int role) {
-    QString roleString = "";
-    QList<QObject*>::iterator object;
-    for (object=tuneList.begin(); object!=tuneList.end(); object++) {
-        Tune* tune = (Tune*) *object;
-
-        switch(role) {
-        case 0:
-            roleString += tune->name() + "\n";
-            break;
-        case 1:
-            roleString += tune->size() + "\n";
-            break;
-        case 2:
-            roleString += tune->lastModified() + "\n";
-            break;
-        }
-    }
-    roleString.chop(1);
-    return roleString.toStdString();
 }
 
 string TunesManager::runSortScript(string roleString, bool inverse) {
@@ -125,6 +135,28 @@ QList<QObject*> TunesManager::getSortedTuneList(int role,string sortedRoleString
     }
 
     return sortedTuneList;
+}
+
+string TunesManager::getRoleString(int role) {
+    QString roleString = "";
+    QList<QObject*>::iterator object;
+    for (object=tuneList.begin(); object!=tuneList.end(); object++) {
+        Tune* tune = (Tune*) *object;
+
+        switch(role) {
+        case 0:
+            roleString += tune->name() + "\n";
+            break;
+        case 1:
+            roleString += tune->size() + "\n";
+            break;
+        case 2:
+            roleString += tune->lastModified() + "\n";
+            break;
+        }
+    }
+    roleString.chop(1);
+    return roleString.toStdString();
 }
 
 string TunesManager::getScriptResult(const char* script) {

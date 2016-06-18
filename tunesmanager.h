@@ -15,6 +15,7 @@ class TunesManager : public QObject {
 public:
     explicit TunesManager(QObject *parent = 0);
     Q_INVOKABLE QList<QObject*> searchTunes(QString directoryPath);
+    Q_INVOKABLE QList<QObject*> checkDuplicate();
     Q_INVOKABLE QList<QObject*> sortTuneList(int role, bool inverse);
 
 private:
@@ -23,9 +24,14 @@ private:
     string runSearchScript(string directoryPath);
     QList<QObject*> getTuneList(string tuneString);
     QString evaluateSize(string size);
-    string getRoleString(int role);
+
+    string runCheckDuplicateScript();
+    void setDuplicate(string duplicateNameList);
+
     string runSortScript(string roleString, bool inverse);
     QList<QObject*> getSortedTuneList(int role,string sortedRoleString);
+
+    string getRoleString(int role);
     string getScriptResult(const char* script);
 };
 
