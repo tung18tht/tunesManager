@@ -5,21 +5,42 @@ TunesManager::TunesManager(QObject *parent) : QObject(parent) {
 }
 
 QList<QObject*> TunesManager::searchTunes(QString directoryPath) {
-    string result = runSearchTunesScript(directoryPath.toStdString());
+    string result = runSearchScript(directoryPath.toStdString());
     return tuneList = getTuneList(result);
 }
 
-QList<QObject*> TunesManager::sortTuneList(QString role, bool inverse) {
+QList<QObject*> TunesManager::sortTuneList(int role, bool inverse) {
     string roleString = "";
-    QList<QObject*>::iterator tune;
-    for (tune=tuneList.begin(); tune!=tuneList.end(); ++tune) {
-//        roleString += tune.reference-,;
+    QList<QObject*>::iterator object;
+    for (object=tuneList.begin(); object!=tuneList.end(); object++) {
+        Tune* tune = (Tune*) *object;
+
+        switch(role) {
+        case 0:
+            roleString += tune->name().toStdString() + "\n";
+            break;
+        case 1:
+            roleString += tune->size().toStdString() + "\n";
+            break;
+        case 2:
+            roleString += tune->lastModified().toStdString() + "\n";
+            break;
+        }
     }
+    string result = runSortScript(roleString, inverse);
+    cout << result << endl;
     return tuneList;
 }
 
-string TunesManager::runSearchTunesScript(string directoryPath) {
+string TunesManager::runSearchScript(string directoryPath) {
     string script = "./scripts/search.sh \"" + directoryPath + "\" mp3";
+    return getScriptResult(script.c_str());
+}
+
+string TunesManager::runSortScript(string roleString, bool inverse) {
+    string script = "./scripts/sort.sh ";
+    script += inverse ? "1 " : "0 ";
+    script += "\"" + roleString + "\"";
     return getScriptResult(script.c_str());
 }
 

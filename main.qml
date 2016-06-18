@@ -37,7 +37,7 @@ ApplicationWindow {
     }
 
     TunesWindowForm {
-        property string sortColumnRole: tuneTable.getColumn(tuneTable.sortIndicatorColumn).role
+        property string sortColumnRole: tuneTable.sortIndicatorColumn
         property int sortOrder: (tuneTable.sortIndicatorOrder == Qt.AscendingOrder) ? 0 : 1
 
         id: tunesWindow
