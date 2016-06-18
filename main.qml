@@ -37,9 +37,6 @@ ApplicationWindow {
     }
 
     TunesWindowForm {
-        property string sortColumnRole: tuneTable.sortIndicatorColumn
-        property int sortOrder: (tuneTable.sortIndicatorOrder == Qt.AscendingOrder) ? 0 : 1
-
         id: tunesWindow
         anchors.fill: parent
         visible: false
@@ -56,12 +53,12 @@ ApplicationWindow {
 
         tuneTable.onSortIndicatorColumnChanged: {
             tuneModel.clear()
-            tuneModel.append(tunesManager.sortTuneList(sortColumnRole, sortOrder))
+            tuneModel.append(tunesManager.sortTuneList(tuneTable.sortIndicatorColumn, (tuneTable.sortIndicatorOrder == Qt.AscendingOrder) ? 0 : 1))
         }
 
         tuneTable.onSortIndicatorOrderChanged: {
             tuneModel.clear()
-            tuneModel.append(tunesManager.sortTuneList(sortColumnRole, sortOrder))
+            tuneModel.append(tunesManager.sortTuneList(tuneTable.sortIndicatorColumn, (tuneTable.sortIndicatorOrder == Qt.AscendingOrder) ? 0 : 1))
         }
 
         tuneTable.onClicked: {
