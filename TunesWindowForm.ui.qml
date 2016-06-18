@@ -12,8 +12,8 @@ Rectangle {
 
     Rectangle {
         id: backToHomeButton
-        height: parent.height * 0.1
-        width: height;
+        height: 50
+        width: height
         color: "#DDDDDD"
 
         Text {
@@ -29,20 +29,21 @@ Rectangle {
 
     Rectangle {
         id: tunePlayerBox
-        height: parent.height * 0.1
-        width: parent.width - height
+        height: 50
+        width: parent.width - backToHomeButton.width
         anchors.left: backToHomeButton.right
 
         MediaPlayer {
             id: tunePlayer
         }
+        color: "#FF0000"
     }
 
     TableView {
         id: tuneTable
         anchors.top: tunePlayerBox.bottom
-        width: parent.width * 0.75
-        height: parent.height * 0.9
+        width: parent.width - tuneInfo.width
+        height: parent.height - backToHomeButton.height
         alternatingRowColors: false
         sortIndicatorVisible: true
         model: tuneModel
@@ -51,7 +52,7 @@ Rectangle {
             role: "name"
             title: "Name"
             movable: false
-            width: 250
+            width: 300
         }
 
         TableViewColumn {
@@ -78,7 +79,8 @@ Rectangle {
         id: tuneInfo
         anchors.top: tunePlayerBox.bottom
         anchors.left: tuneTable.right
-        width: parent.width * 0.25
-        height: parent.height * 0.9
+        width: 250
+        height: parent.height - backToHomeButton.height
+        color: "#00FF00"
     }
 }

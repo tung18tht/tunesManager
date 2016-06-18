@@ -11,8 +11,10 @@ ApplicationWindow {
     visible: true
     width: 600
     minimumWidth: 600
+    maximumWidth: 600
     height: 300
     minimumHeight: 300
+    maximumHeight: 300
     title: "Tunes Manager"
 
     menuBar: MenuBar {
@@ -33,7 +35,12 @@ ApplicationWindow {
             tunesWindow.tuneTable.sortIndicatorColumn = 0
 
             root.width = 800
-            root.height = 500
+            root.height = 450
+            root.minimumWidth = 800
+            root.minimumHeight = 450
+            root.maximumWidth = 10000
+            root.maximumHeight = 10000
+
 
             homeWindow.visible = false
             tunesWindow.visible = true
@@ -50,6 +57,10 @@ ApplicationWindow {
 
             root.width = 600
             root.height = 300
+            root.minimumWidth = 600
+            root.minimumHeight = 300
+            root.maximumWidth = 600
+            root.maximumHeight = 300
 
             tunesWindow.visible = false
             homeWindow.visible = true
@@ -58,6 +69,7 @@ ApplicationWindow {
         tuneTable.itemDelegate: Text {
             color:  tuneModel.get(styleData.row).duplicate == 1 ? "#FF0000" : styleData.textColor
             text: styleData.value
+            font.pixelSize: 12
             elide: styleData.elideMode
             horizontalAlignment: styleData.textAlignment
         }
@@ -87,7 +99,8 @@ ApplicationWindow {
 
     FileDialog {
         id: fileDialog
-        folder: shortcuts.home
+//        folder: shortcuts.home
+        folder: "file:///Volumes/BOOTCAMP/Users/Macbook Pro/Music"
         selectFolder: true
     }
 

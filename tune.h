@@ -3,6 +3,9 @@
 
 #include <QObject>
 
+// Abstract Tune class with basic properties, get set methods
+// Names are taken from file paths
+
 class Tune : public QObject {
     Q_OBJECT
 
