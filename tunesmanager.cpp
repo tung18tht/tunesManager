@@ -9,51 +9,9 @@ QList<QObject*> TunesManager::searchTunes(QString directoryPath) {
     return tuneList = getTuneList(result);
 }
 
-QList<QObject*> TunesManager::sortTuneList(int role, bool inverse) {
-    string roleString = "";
-    QList<QObject*>::iterator object;
-    for (object=tuneList.begin(); object!=tuneList.end(); object++) {
-        Tune* tune = (Tune*) *object;
-
-        switch(role) {
-        case 0:
-            roleString += tune->name().toStdString() + "\n";
-            break;
-        case 1:
-            roleString += tune->size().toStdString() + "\n";
-            break;
-        case 2:
-            roleString += tune->lastModified().toStdString() + "\n";
-            break;
-        }
-    }
-    string result = runSortScript(roleString, inverse);
-    cout << result << endl;
-    return tuneList;
-}
-
 string TunesManager::runSearchScript(string directoryPath) {
     string script = "./scripts/search.sh \"" + directoryPath + "\" mp3";
     return getScriptResult(script.c_str());
-}
-
-string TunesManager::runSortScript(string roleString, bool inverse) {
-    string script = "./scripts/sort.sh ";
-    script += inverse ? "1 " : "0 ";
-    script += "\"" + roleString + "\"";
-    return getScriptResult(script.c_str());
-}
-
-string TunesManager::getScriptResult(const char* script) {
-    char buffer[128];
-    string result = "";
-    shared_ptr<FILE> pipe(popen(script, "r"), pclose);
-    while (!feof(pipe.get())) {
-        if (fgets(buffer, 128, pipe.get()) != NULL) {
-            result += buffer;
-        }
-    }
-    return result;
 }
 
 QList<QObject*> TunesManager::getTuneList(string tuneString) {
@@ -89,4 +47,91 @@ QString TunesManager::evaluateSize(string size) {
     }
     size += " KB";
     return size.c_str();
+}
+
+QList<QObject*> TunesManager::sortTuneList(int role, bool inverse) {
+    string roleString = getRoleString(role);
+    string sortedRoleString = runSortScript(roleString, inverse);
+    return tuneList = getSortedTuneList(role, sortedRoleString);
+}
+
+string TunesManager::getRoleString(int role) {
+    QString roleString = "";
+    QList<QObject*>::iterator object;
+    for (object=tuneList.begin(); object!=tuneList.end(); object++) {
+        Tune* tune = (Tune*) *object;
+
+        switch(role) {
+        case 0:
+            roleString += tune->name() + "\n";
+            break;
+        case 1:
+            roleString += tune->size() + "\n";
+            break;
+        case 2:
+            roleString += tune->lastModified() + "\n";
+            break;
+        }
+    }
+    roleString.chop(1);
+    return roleString.toStdString();
+}
+
+string TunesManager::runSortScript(string roleString, bool inverse) {
+    string script = "./scripts/sort.sh ";
+    script += inverse ? "1 " : "0 ";
+    script += "\"" + roleString + "\"";
+    return getScriptResult(script.c_str());
+}
+
+QList<QObject*> TunesManager::getSortedTuneList(int role,string sortedRoleString) {
+    QList<QObject*> sortedTuneList;
+    string roleString;
+    istringstream roleStringStream(sortedRoleString);
+    QList<QObject*>::iterator object;
+    bool found = false;
+
+    while (!roleStringStream.eof()) {
+        getline(roleStringStream, roleString);
+        found = false;
+        for (object=tuneList.begin(); object!=tuneList.end(); object++) {
+            Tune* tune = (Tune*) *object;
+
+            switch(role) {
+            case 0:
+                if (tune->name().toStdString() == roleString) {
+                    sortedTuneList.append(tune);
+                    found = true;
+                }
+                break;
+            case 1:
+                if (tune->size().toStdString() == roleString) {
+                    sortedTuneList.append(tune);
+                    found = true;
+                }
+                break;
+            case 2:
+                if (tune->lastModified().toStdString() == roleString) {
+                    sortedTuneList.append(tune);
+                    found = true;
+                }
+                break;
+            }
+            if (found) break;
+        }
+    }
+
+    return sortedTuneList;
+}
+
+string TunesManager::getScriptResult(const char* script) {
+    char buffer[128];
+    string result = "";
+    shared_ptr<FILE> pipe(popen(script, "r"), pclose);
+    while (!feof(pipe.get())) {
+        if (fgets(buffer, 128, pipe.get()) != NULL) {
+            result += buffer;
+        }
+    }
+    return result;
 }

@@ -2,7 +2,6 @@
 #define TUNESMANAGER_H
 
 #include <QObject>
-#include <QUrl>
 
 #include <iostream>
 #include <sstream>
@@ -22,10 +21,12 @@ private:
     QList<QObject*> tuneList;
 
     string runSearchScript(string directoryPath);
-    string runSortScript(string roleString, bool inverse);
-    string getScriptResult(const char* script);
     QList<QObject*> getTuneList(string tuneString);
     QString evaluateSize(string size);
+    string getRoleString(int role);
+    string runSortScript(string roleString, bool inverse);
+    QList<QObject*> getSortedTuneList(int role,string sortedRoleString);
+    string getScriptResult(const char* script);
 };
 
 #endif // TUNESMANAGER_H
