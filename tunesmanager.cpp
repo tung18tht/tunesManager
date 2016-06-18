@@ -6,7 +6,7 @@ TunesManager::TunesManager(QObject *parent) : QObject(parent) {
 
 QList<QObject*> TunesManager::searchTunes(QString directoryPath) {
     string result = runSearchScript(directoryPath.toStdString());
-    return tuneList = getTuneList(result);
+    return dynamicTuneList = fullTuneList = getTuneList(result);
 }
 
 string TunesManager::runSearchScript(string directoryPath) {
@@ -52,7 +52,7 @@ QString TunesManager::evaluateSize(string size) {
 QList<QObject*> TunesManager::checkDuplicate() {
     string duplicateNameList = runCheckDuplicateScript();
     setDuplicate(duplicateNameList);
-    return tuneList;
+    return dynamicTuneList;
 }
 
 string TunesManager::runCheckDuplicateScript() {
@@ -69,7 +69,7 @@ void TunesManager::setDuplicate(string duplicateNameList) {
 
     while (!duplicateNameStream.eof()) {
         getline(duplicateNameStream, duplicateName);
-        for (object=tuneList.begin(); object!=tuneList.end(); object++) {
+        for (object=fullTuneList.begin(); object!=fullTuneList.end(); object++) {
             Tune* tune = (Tune*) *object;
 
             if (tune->name().toStdString() == duplicateName) {
@@ -77,12 +77,14 @@ void TunesManager::setDuplicate(string duplicateNameList) {
             }
         }
     }
+
+    dynamicTuneList = fullTuneList;
 }
 
 QList<QObject*> TunesManager::sortTuneList(int role, bool inverse) {
     string roleString = getRoleString(role);
     string sortedRoleString = runSortScript(roleString, inverse);
-    return tuneList = getSortedTuneList(role, sortedRoleString);
+    return dynamicTuneList = getSortedTuneList(role, sortedRoleString);
 }
 
 string TunesManager::runSortScript(string roleString, bool inverse) {
@@ -102,28 +104,28 @@ QList<QObject*> TunesManager::getSortedTuneList(int role,string sortedRoleString
     while (!roleStringStream.eof()) {
         getline(roleStringStream, roleString);
         found = false;
-        for (object=tuneList.begin(); object!=tuneList.end(); object++) {
+        for (object=dynamicTuneList.begin(); object!=dynamicTuneList.end(); object++) {
             Tune* tune = (Tune*) *object;
 
             switch(role) {
             case 0:
                 if (tune->name().toStdString() == roleString) {
                     sortedTuneList.append(tune);
-                    tuneList.removeOne(*object);
+                    dynamicTuneList.removeOne(*object);
                     found = true;
                 }
                 break;
             case 1:
                 if (tune->size().toStdString() == roleString) {
                     sortedTuneList.append(tune);
-                    tuneList.removeOne(*object);
+                    dynamicTuneList.removeOne(*object);
                     found = true;
                 }
                 break;
             case 2:
                 if (tune->lastModified().toStdString() == roleString) {
                     sortedTuneList.append(tune);
-                    tuneList.removeOne(*object);
+                    dynamicTuneList.removeOne(*object);
                     found = true;
                 }
                 break;
@@ -138,7 +140,7 @@ QList<QObject*> TunesManager::getSortedTuneList(int role,string sortedRoleString
 string TunesManager::getRoleString(int role) {
     QString roleString = "";
     QList<QObject*>::iterator object;
-    for (object=tuneList.begin(); object!=tuneList.end(); object++) {
+    for (object=fullTuneList.begin(); object!=fullTuneList.end(); object++) {
         Tune* tune = (Tune*) *object;
 
         switch(role) {

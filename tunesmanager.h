@@ -19,7 +19,8 @@ public:
     Q_INVOKABLE QList<QObject*> sortTuneList(int role, bool inverse);
 
 private:
-    QList<QObject*> tuneList;
+    QList<QObject*> fullTuneList;
+    QList<QObject*> dynamicTuneList;
 
     string runSearchScript(string directoryPath);
     QList<QObject*> getTuneList(string tuneString);
