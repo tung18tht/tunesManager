@@ -14,6 +14,10 @@ string TunesManager::runSearchScript(string directoryPath) {
     return getScriptResult(script.c_str());
 }
 
+// Create a Tune list from a string with following format:
+//  Line 1: File path
+//  Line 2: File size
+//  Line 3: Last modified
 QList<QObject*> TunesManager::getTuneList(string tuneString) {
     QList<QObject*> tuneList;
     istringstream tuneStream(tuneString);
@@ -32,12 +36,12 @@ QList<QObject*> TunesManager::getTuneList(string tuneString) {
         lastModified = temp.c_str();
         tuneList.append(new Tune(path, size, lastModified));
     }
-
     tuneList.removeLast();
 
     return tuneList;
 }
 
+// Convert size form such as: "1234567" to "1,235KB"
 QString TunesManager::evaluateSize(string size) {
     int sizeInt = atoi(size.c_str());
     sizeInt /= 1000;
@@ -81,6 +85,8 @@ void TunesManager::setDuplicate(string duplicateNameList) {
     dynamicTuneList = fullTuneList;
 }
 
+// role: determine sort by name (0) or size (1), or lastModified (2)
+// inverse: determine sort alphabetically (0) or not (1)
 QList<QObject*> TunesManager::sortTuneList(int role, bool inverse) {
     string roleString = getRoleString(role);
     string sortedRoleString = runSortScript(roleString, inverse);
@@ -96,7 +102,7 @@ string TunesManager::runSortScript(string roleString, bool inverse) {
 
 QList<QObject*> TunesManager::filterTunes(QString name) {
     dynamicTuneList = fullTuneList;
-    if (name=="") return fullTuneList;
+    if (name=="") return dynamicTuneList;
     string nameList = runFilterScript(name.toStdString());
     return dynamicTuneList = getTuneListFromRole(0, nameList);
 }
@@ -108,6 +114,8 @@ string TunesManager::runFilterScript(string name) {
     return getScriptResult(script.c_str());
 }
 
+// roleStringList is from output of getRoleString(int role)
+// this function return a list of Tunes that their roles are in the roleStringList
 QList<QObject*> TunesManager::getTuneListFromRole(int role,string roleStringList) {
     QList<QObject*> tuneList;
     string roleString;
@@ -151,6 +159,7 @@ QList<QObject*> TunesManager::getTuneListFromRole(int role,string roleStringList
     return tuneList;
 }
 
+// Get string list of all tunes by role only (all names, all size,...)
 string TunesManager::getRoleString(int role) {
     QString roleString = "";
     QList<QObject*>::iterator object;
@@ -173,6 +182,7 @@ string TunesManager::getRoleString(int role) {
     return roleString.toStdString();
 }
 
+// convert executed script result to std::string
 string TunesManager::getScriptResult(const char* script) {
     char buffer[128];
     string result = "";
