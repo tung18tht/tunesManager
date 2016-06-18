@@ -28,6 +28,9 @@ ApplicationWindow {
             tuneModel.clear()
             tuneModel.append(tunesManager.searchTunes(directoryPath))
 
+            tunesWindow.tuneTable.sortIndicatorColumn = 1
+            tunesWindow.tuneTable.sortIndicatorColumn = 0
+
             root.width = 800
             root.height = 500
 
