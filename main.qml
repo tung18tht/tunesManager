@@ -76,11 +76,19 @@ ApplicationWindow {
 
         tuneTable.onSortIndicatorColumnChanged: {
             tuneModel.clear()
+            tunesManager.filterTunes(searchBox.text)
             tuneModel.append(tunesManager.sortTuneList(tuneTable.sortIndicatorColumn, (tuneTable.sortIndicatorOrder == Qt.AscendingOrder) ? 0 : 1))
         }
 
         tuneTable.onSortIndicatorOrderChanged: {
             tuneModel.clear()
+            tunesManager.filterTunes(searchBox.text)
+            tuneModel.append(tunesManager.sortTuneList(tuneTable.sortIndicatorColumn, (tuneTable.sortIndicatorOrder == Qt.AscendingOrder) ? 0 : 1))
+        }
+
+        searchBox.onTextChanged: {
+            tuneModel.clear()
+            tunesManager.filterTunes(searchBox.text)
             tuneModel.append(tunesManager.sortTuneList(tuneTable.sortIndicatorColumn, (tuneTable.sortIndicatorOrder == Qt.AscendingOrder) ? 0 : 1))
         }
 

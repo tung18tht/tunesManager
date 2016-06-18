@@ -4,6 +4,8 @@ OTHER_FILES +=\
 $${PWD}/scripts/sort.sh
 OTHER_FILES += \
 $${PWD}/scripts/checkDuplicate.sh
+OTHER_FILES += \
+$${PWD}/scripts/filter.sh
 OTHER_FILES +=\
 $${PWD}/README.md
 

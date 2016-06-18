@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # $1: inverse variable
 # $2: string to sort
 

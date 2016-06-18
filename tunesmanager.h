@@ -17,6 +17,7 @@ public:
     Q_INVOKABLE QList<QObject*> searchTunes(QString directoryPath);
     Q_INVOKABLE QList<QObject*> checkDuplicate();
     Q_INVOKABLE QList<QObject*> sortTuneList(int role, bool inverse);
+    Q_INVOKABLE QList<QObject*> filterTunes(QString name);
 
 private:
     QList<QObject*> fullTuneList;
@@ -30,8 +31,10 @@ private:
     void setDuplicate(string duplicateNameList);
 
     string runSortScript(string roleString, bool inverse);
-    QList<QObject*> getSortedTuneList(int role,string sortedRoleString);
 
+    string runFilterScript(string name);
+
+    QList<QObject*> getTuneListFromRole(int role, string roleStringList);
     string getRoleString(int role);
     string getScriptResult(const char* script);
 };

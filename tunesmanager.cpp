@@ -84,7 +84,7 @@ void TunesManager::setDuplicate(string duplicateNameList) {
 QList<QObject*> TunesManager::sortTuneList(int role, bool inverse) {
     string roleString = getRoleString(role);
     string sortedRoleString = runSortScript(roleString, inverse);
-    return dynamicTuneList = getSortedTuneList(role, sortedRoleString);
+    return dynamicTuneList = getTuneListFromRole(role, sortedRoleString);
 }
 
 string TunesManager::runSortScript(string roleString, bool inverse) {
@@ -94,10 +94,24 @@ string TunesManager::runSortScript(string roleString, bool inverse) {
     return getScriptResult(script.c_str());
 }
 
-QList<QObject*> TunesManager::getSortedTuneList(int role,string sortedRoleString) {
-    QList<QObject*> sortedTuneList;
+QList<QObject*> TunesManager::filterTunes(QString name) {
+    if (name=="") return fullTuneList;
+    string nameList = runFilterScript(name.toStdString());
+    dynamicTuneList = fullTuneList;
+    return dynamicTuneList = getTuneListFromRole(0, nameList);
+}
+
+string TunesManager::runFilterScript(string name) {
+    string script = "./scripts/filter.sh ";
+    script += "\"" + getRoleString(0) + "\" ";
+    script += "\"" + name + "\"";
+    return getScriptResult(script.c_str());
+}
+
+QList<QObject*> TunesManager::getTuneListFromRole(int role,string roleStringList) {
+    QList<QObject*> tuneList;
     string roleString;
-    istringstream roleStringStream(sortedRoleString);
+    istringstream roleStringStream(roleStringList);
     QList<QObject*>::iterator object;
     bool found = false;
 
@@ -110,21 +124,21 @@ QList<QObject*> TunesManager::getSortedTuneList(int role,string sortedRoleString
             switch(role) {
             case 0:
                 if (tune->name().toStdString() == roleString) {
-                    sortedTuneList.append(tune);
+                    tuneList.append(tune);
                     dynamicTuneList.removeOne(*object);
                     found = true;
                 }
                 break;
             case 1:
                 if (tune->size().toStdString() == roleString) {
-                    sortedTuneList.append(tune);
+                    tuneList.append(tune);
                     dynamicTuneList.removeOne(*object);
                     found = true;
                 }
                 break;
             case 2:
                 if (tune->lastModified().toStdString() == roleString) {
-                    sortedTuneList.append(tune);
+                    tuneList.append(tune);
                     dynamicTuneList.removeOne(*object);
                     found = true;
                 }
@@ -134,7 +148,7 @@ QList<QObject*> TunesManager::getSortedTuneList(int role,string sortedRoleString
         }
     }
 
-    return sortedTuneList;
+    return tuneList;
 }
 
 string TunesManager::getRoleString(int role) {
