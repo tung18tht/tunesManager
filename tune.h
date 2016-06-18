@@ -10,6 +10,7 @@ class Tune : public QObject {
     Q_PROPERTY(QString path READ path WRITE setPath)
     Q_PROPERTY(QString size READ size WRITE setSize)
     Q_PROPERTY(QString lastModified READ lastModified WRITE setLastModified)
+    Q_PROPERTY(bool duplicate READ duplicate WRITE setDuplicate)
 
 public:
     explicit Tune(QObject *parent = 0);
@@ -19,13 +20,16 @@ public:
     QString path();
     QString size();
     QString lastModified();
+    bool duplicate();
 
     void setPath(QString path);
     void setSize(QString size);
     void setLastModified(QString lastModified);
+    void setDuplicate(bool duplicate);
 
 private:
     QString qName, qPath, qLastModified, qSize;
+    bool qDuplicate;
 
     void setNameFromPath();
 };
