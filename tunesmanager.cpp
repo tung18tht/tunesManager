@@ -101,18 +101,21 @@ QList<QObject*> TunesManager::getSortedTuneList(int role,string sortedRoleString
             case 0:
                 if (tune->name().toStdString() == roleString) {
                     sortedTuneList.append(tune);
+                    tuneList.removeOne(*object);
                     found = true;
                 }
                 break;
             case 1:
                 if (tune->size().toStdString() == roleString) {
                     sortedTuneList.append(tune);
+                    tuneList.removeOne(*object);
                     found = true;
                 }
                 break;
             case 2:
                 if (tune->lastModified().toStdString() == roleString) {
                     sortedTuneList.append(tune);
+                    tuneList.removeOne(*object);
                     found = true;
                 }
                 break;
