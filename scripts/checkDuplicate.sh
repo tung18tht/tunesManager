@@ -1,1 +1,1 @@
-echo "$1" | uniq -d
+echo "$1" | sort | uniq -d
