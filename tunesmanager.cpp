@@ -95,9 +95,9 @@ string TunesManager::runSortScript(string roleString, bool inverse) {
 }
 
 QList<QObject*> TunesManager::filterTunes(QString name) {
+    dynamicTuneList = fullTuneList;
     if (name=="") return fullTuneList;
     string nameList = runFilterScript(name.toStdString());
-    dynamicTuneList = fullTuneList;
     return dynamicTuneList = getTuneListFromRole(0, nameList);
 }
 
