@@ -10,6 +10,11 @@ QList<QObject*> TunesManager::searchTunes(QString directoryPath) {
 }
 
 QList<QObject*> TunesManager::sortTuneList(QString role, bool inverse) {
+    string roleString = "";
+    QList<QObject*>::iterator tune;
+    for (tune=tuneList.begin(); tune!=tuneList.end(); ++tune) {
+//        roleString += tune.reference-,;
+    }
     return tuneList;
 }
 
@@ -59,7 +64,7 @@ QString TunesManager::evaluateSize(string size) {
     sizeInt /= 1000;
     size = to_string(sizeInt);
     for(int i=3; i<size.length(); i+=3) {
-        size.insert(size.length()-i, ",");
+        size.insert(size.length()-i++, ",");
     }
     size += " KB";
     return size.c_str();
