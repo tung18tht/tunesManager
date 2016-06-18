@@ -72,10 +72,8 @@ void TunesManager::setDuplicate(string duplicateNameList) {
         for (object=tuneList.begin(); object!=tuneList.end(); object++) {
             Tune* tune = (Tune*) *object;
 
-            if (tune->lastModified().toStdString() == roleString) {
-                sortedTuneList.append(tune);
-                tuneList.removeOne(*object);
-                found = true;
+            if (tune->name().toStdString() == duplicateName) {
+                tune->setDuplicate(true);
             }
         }
     }

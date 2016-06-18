@@ -26,7 +26,8 @@ ApplicationWindow {
 
         scanButtonMouse.onClicked: {
             tuneModel.clear()
-            tuneModel.append(tunesManager.searchTunes(directoryPath))
+            tunesManager.searchTunes(directoryPath)
+            tuneModel.append(tunesManager.checkDuplicate())
 
             tunesWindow.tuneTable.sortIndicatorColumn = 1
             tunesWindow.tuneTable.sortIndicatorColumn = 0
@@ -52,6 +53,13 @@ ApplicationWindow {
 
             tunesWindow.visible = false
             homeWindow.visible = true
+        }
+
+        tuneTable.itemDelegate: Text {
+            color:  tuneModel.get(styleData.row).duplicate == 1 ? "#FF0000" : styleData.textColor
+            text: styleData.value
+            elide: styleData.elideMode
+            horizontalAlignment: styleData.textAlignment
         }
 
         tuneTable.onSortIndicatorColumnChanged: {
