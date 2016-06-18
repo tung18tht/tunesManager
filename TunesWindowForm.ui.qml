@@ -6,6 +6,7 @@ import QtMultimedia 5.5
 Rectangle {
     property alias tuneTable: tuneTable
     property alias tunePlayer: tunePlayer
+    property alias searchBox: searchBox
     property alias backToHomeButtonMouse: backToHomeButtonMouse
 
     id: root
@@ -36,7 +37,11 @@ Rectangle {
         MediaPlayer {
             id: tunePlayer
         }
-        color: "#FF0000"
+
+        TextField {
+            id: searchBox
+            anchors.right: parent.right
+        }
     }
 
     TableView {
