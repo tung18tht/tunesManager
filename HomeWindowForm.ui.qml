@@ -8,7 +8,7 @@ Rectangle {
     property alias directoryPathMouse: directoryPathMouse
 
     id: root
-    color: "#DDDDDD"
+    color: "#FFFFFF"
 
     Rectangle {
         id: titleBar
@@ -36,14 +36,25 @@ Rectangle {
         }
     }
 
-    Text {
-        id: diretoryPath
+    Rectangle {
+        id: directoryPathBox
         anchors.horizontalCenter: parent.horizontalCenter
-        y: root.height * .4
-        text: directoryPath
-        width: parent.width * 0.8
-        horizontalAlignment: Text.AlignHCenter
-        wrapMode: Text.WordWrap
+        y: root.height * .45
+        width: parent.width * 0.9
+        height: 40
+        color: "#DDDDDD"
+        radius: 5
+
+        Text {
+            id: diretoryPath
+            anchors.fill: parent
+            text: directoryPath
+            width: parent.width
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            wrapMode: Text.WordWrap
+            anchors.margins: 10
+        }
 
         MouseArea {
             id: directoryPathMouse
@@ -54,15 +65,24 @@ Rectangle {
         }
     }
 
+    Text {
+        anchors.bottom: directoryPathBox.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.margins: 5
+        text: "Choose your directory:"
+    }
+
     Rectangle {
         id: scanButton
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: 30
         width: 100
-        height: 100
-        radius: width / 2
+        height: 50
+        radius: 5
         color: "#FFFFFF"
+        border.color: "#DDDDDD"
+        border.width: 5
 
         Text {
             id: scanText
@@ -76,8 +96,26 @@ Rectangle {
             id: scanButtonMouse
             anchors.fill: parent
             hoverEnabled: true
-            onEntered: scanButton.color = "#EEEEEE"
+            onEntered: scanButton.color = "#DDDDDD"
             onExited: scanButton.color = "#FFFFFF"
+        }
+    }
+
+    Rectangle {
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.rightMargin: 35
+        anchors.bottomMargin: 35
+        width: 20
+        height: width
+        radius: width / 2
+
+        color: "#DDDDDD"
+
+        Text {
+            text: "?"
+            color: "#159CFB"
+            anchors.centerIn: parent
         }
     }
 }
