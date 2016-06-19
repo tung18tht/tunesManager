@@ -8,11 +8,12 @@ Rectangle {
     property alias tunePlayer: tunePlayer
     property alias searchBox: searchBox
     property alias backToHomeButtonMouse: backToHomeButtonMouse
+    property alias tunePath: tunePath
 
     id: root
 
     Rectangle {
-        id: tunePlayerBox
+        id: headerBar
         height: 50
         width: parent.width
 
@@ -28,7 +29,7 @@ Rectangle {
 
             Image {
                 source: "/icons/back.png"
-                width: 20
+                width: 18
                 height: width
                 anchors.centerIn: parent
 
@@ -43,8 +44,22 @@ Rectangle {
             }
         }
 
-        MediaPlayer {
-            id: tunePlayer
+        Rectangle {
+            id: tunePlayerBox
+            height: 45
+            width: 300
+            radius: 5
+            anchors.centerIn: parent
+            color: "#BBDEFB"
+
+            Text {
+                text: (tunePlayer.source != "") ? tunePlayer.metaData.title + " - " + tunePlayer.metaData.albumArtist : ""
+            }
+
+            MediaPlayer {
+                id: tunePlayer
+                source: ""
+            }
         }
 
         Rectangle {
@@ -78,10 +93,10 @@ Rectangle {
 
     TableView {
         id: tuneTable
-        anchors.top: tunePlayerBox.bottom
-        width: parent.width - tuneInfo.width
-        height: parent.height - tunePlayerBox.height
-//        alternatingRowColors: false
+        anchors.top: headerBar.bottom
+        width: parent.width - 2
+        height: parent.height - headerBar.height - footerBar.height - 2
+        x: 1
         sortIndicatorVisible: true
         model: tuneModel
 
@@ -89,7 +104,7 @@ Rectangle {
             role: "name"
             title: "Name"
             movable: false
-            width: 320
+            width: 350
         }
 
         TableViewColumn {
@@ -97,7 +112,7 @@ Rectangle {
             title: "Size"
             movable: false
             horizontalAlignment: Text.AlignRight
-            width: 90
+            width: 100
         }
 
         TableViewColumn {
@@ -105,7 +120,7 @@ Rectangle {
             title: "Last Modified"
             movable: false
             horizontalAlignment: Text.AlignRight
-            width: 120
+            width: 150
         }
 
         TableViewColumn {
@@ -115,11 +130,18 @@ Rectangle {
     }
 
     Rectangle {
-        id: tuneInfo
-        anchors.top: tunePlayerBox.bottom
-        anchors.left: tuneTable.right
-        width: 250
-        height: parent.height - backToHomeButton.height
-        color: "#00FF00"
+        id: footerBar
+        width: parent.width
+        height: 20
+        anchors.bottom: parent.bottom
+        color: "#1565C0"
+
+        Text {
+            id: tunePath
+            color: "#FFFFFF"
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: 5
+        }
     }
 }

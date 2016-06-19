@@ -55,7 +55,7 @@ ApplicationWindow {
         visible: false
 
         backToHomeButtonMouse.onClicked: {
-            tunePlayer.stop()
+            tunePlayer.source = ""
             searchBox.text = ""
 
             root.width = 600
@@ -96,6 +96,11 @@ ApplicationWindow {
         }
 
         tuneTable.onClicked: {
+            tunePath.text = tuneModel.get(row).path.toString().substring(7)
+        }
+
+        tuneTable.onPressAndHold: {
+            tunePath.text = tuneModel.get(row).path.toString().substring(7)
         }
 
         tuneTable.onDoubleClicked: {
