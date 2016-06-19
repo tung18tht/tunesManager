@@ -34,6 +34,14 @@ bool Tune::duplicate() {
     return qDuplicate;
 }
 
+QString Tune::iSizeString() {
+    return to_string(iSize).c_str();
+}
+
+QString Tune::iLastModifiedString() {
+    return to_string(iLastModified).c_str();
+}
+
 void Tune::setDuplicate(bool duplicate) {
     qDuplicate = duplicate;
 }

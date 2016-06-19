@@ -28,6 +28,9 @@ public:
     QString lastModified();
     bool duplicate();
 
+    QString iSizeString();
+    QString iLastModifiedString();
+
     void setDuplicate(bool duplicate);
 
 private:
@@ -35,8 +38,10 @@ private:
     bool qDuplicate;
     int iSize, iLastModified; // size, lastModified in int for sorting
 
-    QString evaluateSize(int size);
-    QString evaluateLastModified(int lastModified);
+    // Convert size form such as: 1234567 to "1,235KB"
+    static QString evaluateSize(int size);
+    // Convert EPOCH time to readable string
+    static QString evaluateLastModified(int lastModified);
     void setNameFromPath();
 };
 

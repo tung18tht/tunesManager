@@ -7,7 +7,7 @@
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
-//    qmlRegisterType<TunesManager>("TunesManager", 1, 0, "TunesManager");
+    qmlRegisterType<TunesManager>("TunesManager", 1, 0, "TunesManager");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
