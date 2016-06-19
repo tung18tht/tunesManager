@@ -38,9 +38,32 @@ Rectangle {
             id: tunePlayer
         }
 
-        TextField {
-            id: searchBox
+        Rectangle {
             anchors.right: parent.right
+            anchors.rightMargin: 10
+            anchors.verticalCenter: parent.verticalCenter
+            height: 35
+            width: 140
+            radius: 5
+            color: "#BBDEFB"
+
+            Image {
+                source: "icons/searchIcon.png"
+                width: 18
+                height: 18
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.leftMargin: 5
+
+            }
+
+            TextField {
+                id: searchBox
+                anchors.right: parent.right
+                anchors.rightMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                placeholderText: "Search"
+            }
         }
     }
 
@@ -49,7 +72,7 @@ Rectangle {
         anchors.top: tunePlayerBox.bottom
         width: parent.width - tuneInfo.width
         height: parent.height - backToHomeButton.height
-        alternatingRowColors: false
+//        alternatingRowColors: false
         sortIndicatorVisible: true
         model: tuneModel
 

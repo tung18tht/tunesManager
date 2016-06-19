@@ -6,6 +6,7 @@ import QtQuick.Controls.Styles 1.4
 Rectangle {
     property alias scanButtonMouse: scanButtonMouse
     property alias directoryPathMouse: directoryPathMouse
+    property alias helpButton: helpButton
 
     id: root
     color: "#FFFFFF"
@@ -14,26 +15,28 @@ Rectangle {
         id: titleBar
         width: parent.width
 
-        ColumnLayout {
-            id: titleColumn
-            anchors.fill: parent
-            spacing: -5
-
-            Text {
-                id: title
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: "Tunes Manager"
-                font.pixelSize: 36
-                font.family: "Brush Script MT"
-            }
-
-            Text {
-                id: description
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: "Managing tunes on your drive"
-                font.bold: true
-            }
+        Text {
+            id: title
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: "Tunes Manager"
+            font.pixelSize: 36
+            font.family: "Brush Script MT"
         }
+
+        Text {
+            id: description
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: title.bottom
+            text: "Managing tunes on your drive"
+            font.bold: true
+        }
+    }
+
+    Text {
+        anchors.bottom: directoryPathBox.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.margins: 5
+        text: "Choose your directory:"
     }
 
     Rectangle {
@@ -42,7 +45,7 @@ Rectangle {
         y: root.height * .45
         width: parent.width * 0.9
         height: 40
-        color: "#DDDDDD"
+        color: "#BBDEFB"
         radius: 5
 
         Text {
@@ -65,13 +68,6 @@ Rectangle {
         }
     }
 
-    Text {
-        anchors.bottom: directoryPathBox.top
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.margins: 5
-        text: "Choose your directory:"
-    }
-
     Rectangle {
         id: scanButton
         anchors.bottom: parent.bottom
@@ -81,7 +77,7 @@ Rectangle {
         height: 50
         radius: 5
         color: "#FFFFFF"
-        border.color: "#DDDDDD"
+        border.color: "#64B5F6"
         border.width: 5
 
         Text {
@@ -96,7 +92,7 @@ Rectangle {
             id: scanButtonMouse
             anchors.fill: parent
             hoverEnabled: true
-            onEntered: scanButton.color = "#DDDDDD"
+            onEntered: scanButton.color = "#64B5F6"
             onExited: scanButton.color = "#FFFFFF"
         }
     }
@@ -109,13 +105,20 @@ Rectangle {
         width: 20
         height: width
         radius: width / 2
-
-        color: "#DDDDDD"
+        color: "#BBDEFB"
 
         Text {
             text: "?"
-            color: "#159CFB"
+            color: "#1565C0"
             anchors.centerIn: parent
+        }
+
+        MouseArea {
+            id: helpButton
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: parent.color = "#64B5F6"
+            onExited: parent.color = "#BBDEFB"
         }
     }
 }

@@ -45,6 +45,8 @@ ApplicationWindow {
             homeWindow.visible = false
             tunesWindow.visible = true
         }
+
+        helpButton.onClicked: helpDialog.open()
     }
 
     TunesWindowForm {
@@ -54,6 +56,7 @@ ApplicationWindow {
 
         backToHomeButtonMouse.onClicked: {
             tunePlayer.stop()
+            searchBox.text = ""
 
             root.width = 600
             root.height = 300
@@ -115,6 +118,9 @@ ApplicationWindow {
     TunesManager {
         id: tunesManager
     }
+
+    MessageDialog {
+        id: helpDialog
+        text: "To start manage tunes in your directory, choose an directory, press \"Scan\" then you will see a list of all tunes in the directory."
+    }
 }
-
-

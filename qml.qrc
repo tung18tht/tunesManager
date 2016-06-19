@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>HomeWindowForm.ui.qml</file>
         <file>TunesWindowForm.ui.qml</file>
+        <file>icons/searchIcon.png</file>
     </qresource>
 </RCC>
