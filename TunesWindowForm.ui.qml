@@ -12,27 +12,36 @@ Rectangle {
     id: root
 
     Rectangle {
-        id: backToHomeButton
-        height: 50
-        width: height
-        color: "#DDDDDD"
-
-        Text {
-            anchors.centerIn: parent
-            text: "Back"
-        }
-
-        MouseArea {
-            id: backToHomeButtonMouse
-            anchors.fill: parent
-        }
-    }
-
-    Rectangle {
         id: tunePlayerBox
         height: 50
-        width: parent.width - backToHomeButton.width
-        anchors.left: backToHomeButton.right
+        width: parent.width
+
+        Rectangle {
+            id: backToHomeButton
+            height: 40
+            width: height
+            radius: height / 2
+            anchors.left: parent.left
+            anchors.leftMargin: 5
+            anchors.verticalCenter: parent.verticalCenter
+            color: "#BBDEFB"
+
+            Image {
+                source: "/icons/back.png"
+                width: 20
+                height: width
+                anchors.centerIn: parent
+
+            }
+
+            MouseArea {
+                id: backToHomeButtonMouse
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: parent.color = "#64B5F6"
+                onExited: parent.color = "#BBDEFB"
+            }
+        }
 
         MediaPlayer {
             id: tunePlayer
@@ -48,12 +57,12 @@ Rectangle {
             color: "#BBDEFB"
 
             Image {
-                source: "icons/searchIcon.png"
+                source: "icons/search.png"
                 width: 18
                 height: 18
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
-                anchors.leftMargin: 5
+                anchors.leftMargin: 6
 
             }
 
@@ -71,7 +80,7 @@ Rectangle {
         id: tuneTable
         anchors.top: tunePlayerBox.bottom
         width: parent.width - tuneInfo.width
-        height: parent.height - backToHomeButton.height
+        height: parent.height - tunePlayerBox.height
 //        alternatingRowColors: false
         sortIndicatorVisible: true
         model: tuneModel
@@ -80,7 +89,7 @@ Rectangle {
             role: "name"
             title: "Name"
             movable: false
-            width: 300
+            width: 320
         }
 
         TableViewColumn {
@@ -88,13 +97,15 @@ Rectangle {
             title: "Size"
             movable: false
             horizontalAlignment: Text.AlignRight
-            width: 80
+            width: 90
         }
 
         TableViewColumn {
             role: "lastModified"
             title: "Last Modified"
             movable: false
+            horizontalAlignment: Text.AlignRight
+            width: 120
         }
 
         TableViewColumn {

@@ -3,6 +3,9 @@
         <file>main.qml</file>
         <file>HomeWindowForm.ui.qml</file>
         <file>TunesWindowForm.ui.qml</file>
-        <file>icons/searchIcon.png</file>
+        <file>icons/pause.png</file>
+        <file>icons/play.png</file>
+        <file>icons/search.png</file>
+        <file>icons/back.png</file>
     </qresource>
 </RCC>
