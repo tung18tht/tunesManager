@@ -12,7 +12,7 @@ case "$(uname -s)" in
     Darwin)     # macOS
         for type in $2..$*
         do
-           find "$1" \( ! -regex '.*/\..*' \) -iname "*.$type" -exec stat -f "%N%n%z%n%Sm" {} +
+           find "$1" \( ! -regex '.*/\..*' \) -iname "*.$type" -exec stat -f "%N%n%z%n%m" {} +
         done
     ;;
 
