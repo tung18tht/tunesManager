@@ -2,6 +2,9 @@
 #define TUNE_H
 
 #include <QObject>
+#include "time.h"
+
+using namespace std;
 
 // Abstract Tune class with basic properties, get set methods
 // Names are taken from file paths
@@ -17,7 +20,7 @@ class Tune : public QObject {
 
 public:
     explicit Tune(QObject *parent = 0);
-    Tune(QString path, QString size, QString lastModified);
+    Tune(QString path, int size, int lastModified);
 
     QString name();
     QString path();
@@ -32,7 +35,8 @@ private:
     bool qDuplicate;
     int iSize, iLastModified; // size, lastModified in int for sorting
 
-    QString evaluateSize(string size);
+    QString evaluateSize(int size);
+    QString evaluateLastModified(int lastModified);
     void setNameFromPath();
 };
 
