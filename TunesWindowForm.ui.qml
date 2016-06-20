@@ -15,6 +15,7 @@ Rectangle {
     property alias playPauseButtonMouse: playPauseButtonMouse
     property alias tuneTitle: tuneTitle
     property alias tuneArtistAlbum: tuneArtistAlbum
+    property alias timeSlider: timeSlider
 
     id: root
 
@@ -115,6 +116,16 @@ Rectangle {
                 font.italic: true
                 anchors.top: tuneTitle.bottom
                 anchors.horizontalCenter: parent.horizontalCenter
+            }
+
+            Slider {
+                id: timeSlider
+                width: 250
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: parent.bottom
+                maximumValue: tunePlayer.duration / 1000
+                stepSize: 1
+                value: tunePlayer.position / 1000
             }
 
             MediaPlayer {

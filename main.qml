@@ -71,7 +71,7 @@ ApplicationWindow {
         }
 
         tuneTable.itemDelegate: Text {
-            color:  tuneModel.get(styleData.row).duplicate == 1 ? "#FF5555" : styleData.textColor
+            color:  tuneModel.get(styleData.row).duplicate == 1 ? "#FF6666" : styleData.textColor
             text: styleData.value
             elide: styleData.elideMode
             horizontalAlignment: styleData.textAlignment
@@ -118,10 +118,15 @@ ApplicationWindow {
 
         tuneTitle.visible: tunePlayer.playbackState == MediaPlayer.StoppedState ? false : true
         tuneArtistAlbum.visible: tunePlayer.playbackState == MediaPlayer.StoppedState ? false : true
+        timeSlider.visible: tunePlayer.playbackState == MediaPlayer.StoppedState ? false : true
 
         playPauseButtonMouse.onClicked: {
             if (tunePlayer.source == "") return
             tunePlayer.playbackState == MediaPlayer.PlayingState ? tunePlayer.pause() : tunePlayer.play()
+        }
+
+        timeSlider.onValueChanged: {
+            tunePlayer.seek(timeSlider.value * 1000)
         }
     }
 
@@ -131,8 +136,7 @@ ApplicationWindow {
 
     FileDialog {
         id: fileDialog
-//        folder: shortcuts.home
-        folder: "file:///Volumes/BOOTCAMP/Users/Macbook Pro/Music"
+        folder: shortcuts.home
         selectFolder: true
     }
 
