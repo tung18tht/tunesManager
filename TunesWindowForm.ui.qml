@@ -177,7 +177,7 @@ Rectangle {
             role: "name"
             title: "Name"
             movable: false
-            width: 350
+            width: 400
         }
 
         TableViewColumn {
@@ -185,7 +185,7 @@ Rectangle {
             title: "Size"
             movable: false
             horizontalAlignment: Text.AlignRight
-            width: 100
+            width: 150
         }
 
         TableViewColumn {
@@ -193,7 +193,7 @@ Rectangle {
             title: "Last Modified"
             movable: false
             horizontalAlignment: Text.AlignRight
-            width: 150
+            width: 200
         }
 
         TableViewColumn {
