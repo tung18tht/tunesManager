@@ -9,6 +9,7 @@ Rectangle {
     property alias searchBox: searchBox
     property alias backToHomeButtonMouse: backToHomeButtonMouse
     property alias tunePath: tunePath
+    property alias tunePathMouse: tunePathMouse
 
     id: root
 
@@ -139,9 +140,19 @@ Rectangle {
         Text {
             id: tunePath
             color: "#FFFFFF"
+            font.pixelSize: 12
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             anchors.leftMargin: 5
+        }
+
+        MouseArea {
+            id: tunePathMouse
+            anchors.fill: parent
+            cursorShape: Qt.PointingHandCursor
+            hoverEnabled: true
+            onEntered: tunePath.font.underline = true
+            onExited: tunePath.font.underline = false
         }
     }
 }

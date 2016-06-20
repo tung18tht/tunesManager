@@ -63,6 +63,7 @@ Rectangle {
             id: directoryPathMouse
             anchors.fill: parent
             hoverEnabled: true
+            cursorShape: Qt.PointingHandCursor
             onEntered: diretoryPath.font.underline = true
             onExited: diretoryPath.font.underline = false
         }

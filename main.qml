@@ -28,7 +28,7 @@ ApplicationWindow {
 
         scanButtonMouse.onClicked: {
             tuneModel.clear()
-            tunesManager.searchTunes(directoryPath)
+            tunesManager.searchTunes(directoryPath, "mp3")
             tuneModel.append(tunesManager.checkDuplicate())
 
             tunesWindow.tuneTable.sortIndicatorColumn = 1
@@ -70,9 +70,8 @@ ApplicationWindow {
         }
 
         tuneTable.itemDelegate: Text {
-            color:  tuneModel.get(styleData.row).duplicate == 1 ? "#FF0000" : styleData.textColor
+            color:  tuneModel.get(styleData.row).duplicate == 1 ? "#FF5555" : styleData.textColor
             text: styleData.value
-            font.pixelSize: 12
             elide: styleData.elideMode
             horizontalAlignment: styleData.textAlignment
         }
@@ -105,6 +104,11 @@ ApplicationWindow {
 
         tuneTable.onDoubleClicked: {
             tunePlayer.source = tuneModel.get(row).path
+            tunePlayer.play()
+        }
+
+        tunePathMouse.onClicked: {
+            tunePlayer.source = "file://" + tunePath.text
             tunePlayer.play()
         }
     }
