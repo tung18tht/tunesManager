@@ -10,6 +10,11 @@ Rectangle {
     property alias backToHomeButtonMouse: backToHomeButtonMouse
     property alias tunePath: tunePath
     property alias tunePathMouse: tunePathMouse
+    property alias pauseIcon: pauseIcon
+    property alias playIcon: playIcon
+    property alias playPauseButtonMouse: playPauseButtonMouse
+    property alias tuneTitle: tuneTitle
+    property alias tuneArtistAlbum: tuneArtistAlbum
 
     id: root
 
@@ -46,6 +51,49 @@ Rectangle {
         }
 
         Rectangle {
+            id: playPauseButton
+            anchors.left: backToHomeButton.right
+            anchors.leftMargin: 10
+            height: 40
+            width: 40
+            anchors.verticalCenter: parent.verticalCenter
+
+            MouseArea {
+                id: playPauseButtonMouse
+                anchors.fill: parent
+            }
+
+            Image {
+                id: playIcon
+                source: "/icons/play.png"
+                width: 30
+                height: width
+                anchors.centerIn: parent
+            }
+
+            Image {
+                id: pauseIcon
+                source: "/icons/pause.png"
+                width: 30
+                height: width
+                anchors.centerIn: parent
+                visible: false
+            }
+        }
+
+        Rectangle {
+            height: parent.height
+            x: (tunePlayerBox.x + playPauseButton.x) / 2 - 50
+
+            Slider {
+                id: volumeSlider
+                width: 130
+                anchors.verticalCenter: parent.verticalCenter
+                value: 1
+            }
+        }
+
+        Rectangle {
             id: tunePlayerBox
             height: 45
             width: 300
@@ -54,12 +102,25 @@ Rectangle {
             color: "#BBDEFB"
 
             Text {
-                text: (tunePlayer.source != "") ? tunePlayer.metaData.title + " - " + tunePlayer.metaData.albumArtist : ""
+                id: tuneTitle
+                text: tunePlayer.metaData.title
+                font.bold: true
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+
+            Text {
+                id: tuneArtistAlbum
+                text: tunePlayer.metaData.albumArtist + " - " + tunePlayer.metaData.albumTitle
+                font.pixelSize: 10
+                font.italic: true
+                anchors.top: tuneTitle.bottom
+                anchors.horizontalCenter: parent.horizontalCenter
             }
 
             MediaPlayer {
                 id: tunePlayer
                 source: ""
+                volume: volumeSlider.value
             }
         }
 

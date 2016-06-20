@@ -1,6 +1,7 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
+import QtMultimedia 5.5
 
 import TunesManager 1.0
 
@@ -110,6 +111,17 @@ ApplicationWindow {
         tunePathMouse.onClicked: {
             tunePlayer.source = "file://" + tunePath.text
             tunePlayer.play()
+        }
+
+        playIcon.visible: tunePlayer.playbackState == MediaPlayer.PlayingState ? false : true
+        pauseIcon.visible: tunePlayer.playbackState == MediaPlayer.PlayingState ? true : false
+
+        tuneTitle.visible: tunePlayer.playbackState == MediaPlayer.StoppedState ? false : true
+        tuneArtistAlbum.visible: tunePlayer.playbackState == MediaPlayer.StoppedState ? false : true
+
+        playPauseButtonMouse.onClicked: {
+            if (tunePlayer.source == "") return
+            tunePlayer.playbackState == MediaPlayer.PlayingState ? tunePlayer.pause() : tunePlayer.play()
         }
     }
 
