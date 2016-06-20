@@ -4,13 +4,13 @@ TunesManager::TunesManager(QObject *parent) : QObject(parent) {
 
 }
 
-QList<QObject*> TunesManager::searchTunes(QString directoryPath) {
-    string result = runSearchScript(directoryPath.toStdString());
+QList<QObject*> TunesManager::searchTunes(QString directoryPath, QString fileTypes) {
+    string result = runSearchScript(directoryPath.toStdString(), fileTypes.toStdString());
     return dynamicTuneList = fullTuneList = getTuneList(result);
 }
 
-string TunesManager::runSearchScript(string directoryPath) {
-    string script = "./scripts/search.sh \"" + directoryPath + "\" mp3";
+string TunesManager::runSearchScript(string directoryPath, string fileTypes) {
+    string script = "./scripts/search.sh \"" + directoryPath + "\" " + fileTypes;
     return getScriptResult(script.c_str());
 }
 

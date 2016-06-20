@@ -15,7 +15,7 @@ class TunesManager : public QObject {
 public:
     explicit TunesManager(QObject *parent = 0);
     // QML methods
-    Q_INVOKABLE QList<QObject*> searchTunes(QString directoryPath);
+    Q_INVOKABLE QList<QObject*> searchTunes(QString directoryPath, QString fileTypes);
     Q_INVOKABLE QList<QObject*> checkDuplicate();
     Q_INVOKABLE QList<QObject*> sortTuneList(int role, bool inverse);
     Q_INVOKABLE QList<QObject*> filterTunes(QString name);
@@ -27,7 +27,7 @@ private:
     QList<QObject*> dynamicTuneList;
 
     // seachTunes() helper methods
-    string runSearchScript(string directoryPath);
+    string runSearchScript(string directoryPath, string fileTypes);
     QList<QObject*> getTuneList(string tuneString);
 
     // checkDuplicate() helper methods
