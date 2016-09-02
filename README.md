@@ -1,8 +1,20 @@
-##Project 3: Write a program with the following features##
-* List all the audio files from a folder (including sub-folders)
-* Sort files by file name, file size, created date
-* Detect and highlight all the audio file that have the same name (possible
-redundancy)
-* Play an audio by clicking on the audio path
-* Search audio files by keyword
-The Graphical User Interface is written in C/C++ All commands are written in Shell Script
+## Tunes Manager ##
+* My work for an assignment of UnixProgramming course using QT, with shell script.
+* I tried to apply some concepts I have learnt (OOP, MVC, data structures, ...)
+
+
+### Screenshots
+![Home window](/screenshots/1.png)
+The home window, users will choose a directory, and press scan to search for audio files
+
+![Music table](/screenshots/2.png)
+The table show all audio in a directory
+
+![Sorted table](/screenshots/3.png)
+Users can click on table’s header to sort them ascending or descending
+
+![Playing window](/screenshots/4.png)
+The application when playing audio
+
+![Searching window](/screenshots/5.png)
+Users can type in the search box to filter audio list
