@@ -1,6 +1,6 @@
 ## Tunes Manager ##
-* My work for an assignment of UnixProgramming course using QT, with shell script.
-* I tried to apply some concepts I have learnt (OOP, MVC, data structures, ...)
+* An assignment of UnixProgramming course using QT, shell script.
+* Some concepts learnt from university involved (OOP, MVC, data structures, ...)
 
 
 ### Screenshots
